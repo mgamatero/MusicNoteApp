@@ -21,7 +21,7 @@ app.post('/music', (req, res) => {
 
 app.get('/music', (req, res) => {
     Music.find().then((music) => {
-        res.send({ music })
+        res.send({music})
     }, (e) => {
         res.status(400).send()
     })
