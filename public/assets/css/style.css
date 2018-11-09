@@ -14,7 +14,7 @@ body{
   background-repeat:no-repeat;
   background-size:cover;
   background-attachment:fixed;
-  min-height: 700px;
+  min-height: 500px;
 
 }
 
@@ -23,12 +23,12 @@ body{
   top:0;
   left:0;
   width:100%;
-  min-height:700px;
+  min-height:500px;
   background: rgba(0,0,0,0.7);
 }
 
 #home-section .home-inner {
-  padding-top: 150px;
+  padding-top: 90px;
 }
 
 #home-section .card-form{
@@ -55,4 +55,9 @@ body{
   color:#008ed6;
   padding:5px;
   border-radius:5px;
+}
+
+#main-footer {
+  border-top:#008ed6 3px solid;
+  opacity:0.8;
 }

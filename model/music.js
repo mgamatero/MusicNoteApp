@@ -8,6 +8,12 @@ var Music = new Schema ({
         minlength: 1,
         trim:true
     },
+    username: {
+        type: String,
+        required: true,
+        minlength: 1,
+        trim:true
+    },
     artist: {
         type: String,
         required: true,
@@ -18,12 +24,25 @@ var Music = new Schema ({
         type: String,
         required: false,
         trim:true, 
-        default: "empty"
+        default: "----"
     },
     notes: {
         type: String,
         required: false,
-        trim:true
+        trim:true,
+        default: "----"
+    },
+    notes: {
+        type: String,
+        required: false,
+        trim:true,
+        default: "----"
+    },
+    media: {  //gridFs in the future?
+        type: String,
+        required: false,
+        trim:true,
+        default: "----"
     },
     completed: {
         type: Boolean,

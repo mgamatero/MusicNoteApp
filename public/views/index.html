@@ -8,14 +8,13 @@
     <!-- font-awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
         crossorigin="anonymous">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-        crossorigin="anonymous">
-    <link rel="stylesheet" href="./css/style.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
     <title>Music Note App</title>
 </head>
 
 <body data-spy="scroll" data-target="#main-nav" id="home">
-        
+
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top" id="main-nav">
         <div class="container">
 
@@ -50,77 +49,94 @@
         <div class="dark-overlay">
             <div class="home-inner container">
                 <div class="row">
-                    <div class="col-lg-8 d-none d-lg-block">
-                        <h1 class="display-4">Build <strong>social</strong> profiles and gain revenue <strong>profits</strong>
-                        </h1>
+                    <div class="d-lg-block">
+                        <h1 class="display-4">Organize your <strong>Open Mic</strong> ideas in one app.</h1>
                         <div class="d-flex">
                             <div class="p-4 align-self-start">
                                 <i class="fas fa-check fa-2x"></i>
                             </div>
-                            <div class="p-4 align-self-end">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus nemo sapiente ipsum
-                                iusto, sint cumque.
+                            <div class="h4 p-4 align-self-end">
+                                Do open mic performance ideas come to you at random times? Are they scribbled in random
+                                napkins and notebooks?
+                                Only to be lost later?
                             </div>
                         </div>
                         <div class="d-flex">
                             <div class="p-4 align-self-start">
                                 <i class="fas fa-check fa-2x"></i>
                             </div>
-                            <div class="p-4 align-self-end">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus nemo sapiente ipsum
-                                iusto, sint cumque.
+                            <div class="h4 p-4 align-self-end">
+                                Do you learn songs only to forget about them later on?
                             </div>
                         </div>
                         <div class="d-flex">
                             <div class="p-4 align-self-start">
                                 <i class="fas fa-check fa-2x"></i>
                             </div>
-                            <div class="p-4 align-self-end">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus nemo sapiente ipsum
-                                iusto, sint cumque.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4">
-                        <div class="card bg-primary text-center card-form">
-                            <div class="card-body">
-                                <h3>Sign Up Today</h3>
-                                <h3 id="trymehere"></h3>
-                                <p>Please fill out this form to register</p>
-                                <form>
-                                    <div class="form-group">
-                                        <input type="text" class="form-control form-control-lg" placeholder="Username">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="email" class="form-control form-control-lg" placeholder="Email">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="password" class="form-control form-control-lg" placeholder="Password">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="password" class="form-control form-control-lg" placeholder="Confirm-password">
-                                    </div>
-                                    <input type="submit" value="Submit" class="btn btn-outline-light btn-block">
-                                </form>
+                            <div class="h4 p-4 align-self-end">
+                                Do you want to keep notes and a progress of songs learned. Also making it easy to
+                                remember wherever you are?
                             </div>
                         </div>
                     </div>
                 </div>
+                <!-- <div class="col-lg-4">
+                <div class="row">
+                    <div class="card bg-primary text-center card-form">
+                        <div class="card-body">
+                            <h3>Create an <strong> Open Mic entry: </strong></h3>
+
+
+                            <form>
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-lg" placeholder="Song name">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-lg" placeholder="Username">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-lg" placeholder="Artist">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-lg" placeholder="Link">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-lg" placeholder="Notes">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-lg" placeholder="Media">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-lg" placeholder="Link">
+                                </div>
+
+
+                                <input type="submit" value="Submit" class="btn btn-outline-light btn-block">
+                            </form>
+                        </div>
+                    </div>
+
+                </div> -->
+
             </div>
         </div>
 
     </header>
 
     <!-- EXPLORE HEAD -->
+
+    <h3 id="trymehere"></h3>
+
     <section id="explore-head-section">
         <div class="container">
             <div class="row">
                 <div class="col text-center py-5">
-                    <h1 class="display-4">Explore</h1>
-                    <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, atque. Fugit eius
-                        exercitationem eaque nostrum maxime saepe temporibus aspernatur ad?</p>
-                    <a href="#" class="btn btn-outline-secondary">Find Out More</a>
+                    <h1 class="display-3">Music Note App</h1>
+                    <p class="lead pt-3">An app to track and organize all the performance pieces in your head. </p>
+                    <p class="lead">   Leave that stuff us.   </p>
+                            <p class="lead">  We'll leave the performance to <strong>you.</strong>  </p>
+                    
+                    <a href="/active" class="btn btn-outline-secondary">Let's Start!</a>
                 </div>
             </div>
         </div>
@@ -132,7 +148,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <img src="img/explore-section1.jpg" alt="" class="img-fluid mb-3 rounded-circle">
+                    <img src="../public/assets/img/share-section1.jpg" alt="" class="img-fluid mb-3 rounded-circle">
                 </div>
                 <div class="col-md-6">
                     <h3>Explore & Connect</h3>
@@ -162,27 +178,14 @@
         </div>
     </section>
 
-    <!-- CREATE HEAD -->
-    <section id="create-head-section" class="bg-primary py-5">
-        <div class="container">
-            <div class="row">
-                <div class="col text-center py-5">
-                    <h1 class="displa-4">Create</h1>
-                    <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, atque. Fugit eius
-                        exercitationem eaque nostrum maxime saepe temporibus aspernatur ad?</p>
-                    <a href="#" class="btn btn-outline-light">Find Out More</a>
-                </div>
-            </div>
-        </div>
 
-    </section>
 
     <!-- CREATE SECTION -->
     <section id="create-section" class="py-5">
         <div class="container">
             <div class="row">
                 <div class="col-md-6 order-2">
-                    <img src="img/create-section1.jpg" alt="" class="img-fluid mb-3 rounded-circle">
+                    <img src="../public/assets/img/create-section1.jpg" alt="" class="img-fluid mb-3 rounded-circle">
                 </div>
                 <div class="col-md-6 order-1">
                     <h3>Create Your Passion</h3>
@@ -212,124 +215,49 @@
     </section>
 
 
-    <!-- SHARE HEAD -->
-    <section id="share-head-section" class="bg-primary">
-        <div class="container">
-            <div class="row">
-                <div class="col text-center py-5">
-                    <h1 class="displa-4">Share</h1>
-                    <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, atque. Fugit eius
-                        exercitationem eaque nostrum maxime saepe temporibus aspernatur ad?</p>
-                    <a href="#" class="btn btn-outline-light">Find Out More</a>
-                </div>
-            </div>
-        </div>
-
-    </section>
-
-    <!-- SHARE SECTION -->
-    <section id="share-section" class="bg-light text-muted py-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <img src="img/share-section1.jpg" alt="" class="img-fluid mb-3 rounded-circle">
-                </div>
-                <div class="col-md-6">
-                    <h3>Share What You Create</h3>
-                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nihil voluptatum fuga dolores neque
-                        dolor quibusdam sint vitae non sunt quidem.</p>
-                    <div class="d-flex">
-                        <div class="align-self-start p-4">
-                            <i class="fas fa-check fa-2x"></i>
-                        </div>
-                        <div class="align-self-end p-4">
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque incidunt sequi autem
-                            numquam unde! Veniam aliquid optio suscipit voluptatum ducimus.
-                        </div>
-                    </div>
-                    <div class="d-flex">
-                        <div class="align-self-start p-4">
-                            <i class="fas fa-check fa-2x"></i>
-                        </div>
-                        <div class="align-self-end p-4">
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque incidunt sequi autem
-                            numquam unde! Veniam aliquid optio suscipit voluptatum ducimus.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+   
+    
 
     <!-- FOOTER -->
-    <footer id="main-footer" class="bg=dark">
+    <footer id="main-footer" class="bg-dark">
         <div class="containter">
             <div class="row">
                 <div class="col text-center py-4">
-                    <h3>LoopLAB</h3>
-                    <p>Copyright &copy; <span id="year"></span></p>
-                    <button class="btn btn-primary" data-toggle="modal1" data-target="#contactModal">Contact Us</button>
+                    <h3>Music Note App</h3>
+                    <p>Copyright mgamatero &copy; <span id="year"></span></p>
+
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- CONTACT MODAL -->
-    <div class="modal fade text-dark" id="contactModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Contact Us</h5>
-                    <button class="close" data-dismiss="modal">
-                        <span>&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea class="form-control"></textarea>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn-primary btn-block">Submit</button>
-                </div>
-            </div>
-        </div>
-    </div>
+
+
 
     <!-- jQuery minified.  From code.jquery.com, not the Bootstrap site!! -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-    crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script>
     <!-- Popper -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-    crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script>
     <!-- Bootstrap -getbootstrap.com -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
     <script>
 
         // $(document).ready(function () {
-            
-            //Get the current year for the copyright
-            // $('#trymehere').text(new Date().getFullYear())
-            
-            
-            $.get('/music').then((data) => {
-                $('#trymehere').append(JSON.stringify(data))
-                console.log(data)
+
+        // Get the current year for the copyright
+        $('#year').text(new Date().getFullYear())
 
 
-            })
+        // $.get('/music').then((data) => {
+            
+        //     $('#trymehere').append(JSON.stringify(data))
+        //     // console.log(data)
+
+
+        // })
 
         // })
 
