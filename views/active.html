@@ -45,24 +45,26 @@
         </div>
     </nav>
 
-    <!-- HOME SECTION -->
-    <div class="jumbotron">This is the Active Homepage</div>
-
-    </div>
-    </div>
-    </div>
 
     </header>
 
 
 
+    <!-- ACTIVE HEADER -->
+    <section id="active-header" class="bg-light text-muted py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col text-center py-4">
+                <h1 class="display-3">Active Song Ideas</h1>
+            </div>
+        </div>
+    </div>
 
-
-    <!-- RESULTS SECTION -->
-    <section id="results-section" class="bg-light text-muted py-5">
+    <!-- ACTIVE SECTION -->
+    <section id="active-section" class="bg-info text-secondary">
         <div class="container">
             <div class="row">
-                <div id="results" class="col-4"></div>
+                <div id="active"></div>
             </div>
 
         </div>
@@ -70,13 +72,13 @@
 
 
     <!-- FOOTER -->
-    <footer id="main-footer" class="bg=dark">
+    <footer id="main-footer" class="bg-dark">
         <div class="containter">
             <div class="row">
                 <div class="col text-center py-4">
-                    <h3>LoopLAB</h3>
-                    <p>Copyright &copy; <span id="year"></span></p>
-                    <button class="btn btn-primary" data-toggle="modal1" data-target="#contactModal">Contact Us</button>
+                    <h3>Music Note App</h3>
+                    <p>Copyright mgamatero &copy; <span id="year"></span></p>
+
                 </div>
             </div>
         </div>
@@ -102,16 +104,22 @@
 
 
         $.get('/music').then((data) => {
-            for (var i=0;i<data.length;i++){
-          
-            $('#results').append('<div class = "card">' + 
-                                    '<div class= "card-body">' +
-                                    '<h4 class= "display-5 card-title">' + data[i].text+ '</h4>' +
-                                    '<div class= "card-text">' + data[i].artist+ '<br>' + 
-                                        data[i].link+'</div>' +
-                                 '</div>')
-                        }
-                    })
+            for (var i = 0; i < data.length; i++) {
+
+                $('#active').append('<div class = "card m-3">' +
+                    '<h4 class= "display-4 card-header bg-muted">' + data[i].text + '</h4>' +
+                    '<div class= "card-body">' +
+                    '<h4 class= "card-text"> Artist: '+ data[i].artist + '<br>' +
+                    'Username: '+ data[i].username + '<br>' +
+                    'Link: '+ data[i].link + '<br>' +
+                    'Notes: '+ data[i].notes + '<br>' +
+                    'Media: '+ data[i].media + '<br>' +
+                    'Completed: '+ data[i].completed + '</h4>' +
+                    '<a href="#" class="btn btn-primary">Edit</a>'+
+                    
+                    '</div>')
+            }
+        })
 
 
 

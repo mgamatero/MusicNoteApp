@@ -26,13 +26,7 @@ var Music = new Schema ({
         trim:true, 
         default: "----"
     },
-    notes: {
-        type: String,
-        required: false,
-        trim:true,
-        default: "----"
-    },
-    notes: {
+       notes: {
         type: String,
         required: false,
         trim:true,

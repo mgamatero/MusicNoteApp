@@ -15,7 +15,6 @@ body{
   background-size:cover;
   background-attachment:fixed;
   min-height: 500px;
-
 }
 
 #home-section .dark-overlay{
@@ -60,4 +59,14 @@ body{
 #main-footer {
   border-top:#008ed6 3px solid;
   opacity:0.8;
+}
+
+
+
+#active-section{
+  background: url("../img/home.jpg");
+  background-repeat:no-repeat;
+  background-size:cover;
+  background-attachment:fixed;
+  min-height: 500px;
 }
