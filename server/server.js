@@ -1,6 +1,3 @@
-//contains express and bodyparser, routes, app.listen
-//requires mongoose, Todo and User from db and models
-
 
 var express = require('express')
 var bodyParser = require('body-parser')
@@ -19,7 +16,7 @@ var path = require('path')
 
 app.use(bodyParser.urlencoded({extended:true}))
 app.use(bodyParser.json())
-app.use(express.static(path.join(__dirname,'/public')))
+app.use(express.static(path.join(__dirname,'../public')))
 
 
 //Routes

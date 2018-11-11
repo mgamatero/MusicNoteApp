@@ -11,15 +11,15 @@ var path = require("path");
 // =============================================================
 module.exports = function (app) {
     app.get("/", function (req, res) {
-        res.sendFile(path.join(__dirname, '../public/views/index.html'));
+        res.sendFile(path.join(__dirname, '../views/index.html'));
         
     });
     app.get("/active", function (req, res) {
-        res.sendFile(path.join(__dirname, '../public/views/active.html'));
+        res.sendFile(path.join(__dirname, '../views/active.html'));
         
     });
     app.get("/archived", function (req, res) {
-        res.sendFile(path.join(__dirname, '../public/views/archived.html'));
+        res.sendFile(path.join(__dirname, '../views/archived.html'));
         
     });
 };
