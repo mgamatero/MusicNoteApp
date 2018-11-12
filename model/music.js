@@ -10,7 +10,6 @@ var Music = new Schema ({
     },
     username: {
         type: String,
-        required: true,
         minlength: 1,
         trim:true
     },

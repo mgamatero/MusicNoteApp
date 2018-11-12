@@ -33,13 +33,13 @@ app.get('/music/:id', (req, res) => {
         return res.status(404).send()
     }
 
+    
+
     Music.findById(req.params.id).then((music) => {
         if (!music) {
             return res.status(404).send()
         }
-
-
-        res.send({ music })
+        res.json(music)
     }, (e) => {
         res.status(400).send()
     })
