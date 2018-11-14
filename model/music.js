@@ -31,7 +31,7 @@ var Music = new Schema ({
         trim:true,
         default: "----"
     },
-    media: {  //gridFs in the future?
+       media: {  //gridFs in the future?
         type: String,
         required: false,
         trim:true,
