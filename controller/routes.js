@@ -1,5 +1,7 @@
 var Music = require('../model/music');
 var _ = require ('lodash')
+var mongoose = require('mongoose') 
+
 
 module.exports = function (app) {
     
@@ -8,9 +10,11 @@ app.post('/music', (req, res) => {
     var body = _.pick(req.body, ['text', 'artist','notes', 'link']); //only takes these properties, not completedAt
     var music = new Music({
         text: req.body.text,
+        username: req.body.username,
         artist: req.body.artist,
+        link: req.body.link,
         notes: req.body.notes,
-        link: req.body.link
+        media: req.body.media
     })
     music.save().then((doc) =>
         res.send(doc))
@@ -27,23 +31,33 @@ app.get('/music', (req, res) => {
     })
 })
 
+
 app.get('/music/:id', (req, res) => {
-
-    if (!ObjectID.isValid(req.params.id)) {
-        return res.status(404).send()
-    }
-
-    
-
-    Music.findById(req.params.id).then((music) => {
-        if (!music) {
-            return res.status(404).send()
-        }
+    Music.findOne({ _id:req.params.id}).then((music) => {
         res.json(music)
     }, (e) => {
         res.status(400).send()
     })
 })
+
+// app.get('/music/?id', (req, res) => {
+//     var convertedID = mongoose.Types.ObjectId(req.params.id)
+//     // var convertedID = mongoose.Types.ObjectId(req.params.id)
+
+//     if (!ObjectID.isValid(req.params.id)) {
+//         return res.status(404).send()
+//     }
+    
+//     Music.find({}).then((music) => {
+//         if (!music) {
+//             console.log('Die here')
+//             return res.status(404).send()
+//         }
+//         res.json(music)
+//     }, (e) => {
+//         res.status(400).send()
+//     })
+// })
 
 
 app.delete('/music/:id', (req, res) => {

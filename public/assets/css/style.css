@@ -70,3 +70,26 @@ body{
   background-attachment:fixed;
   min-height: 500px;
 }
+
+.activeSong{
+  border: solid 2px rgb(44, 212, 53);
+}
+
+.activeSong-header{
+  background-color: #888f89;
+}
+
+#detailsModal{
+  min-width: 700px;
+}
+
+.modal-title{
+  font-stretch: expanded;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 3rem;
+}
+.modal-body{
+  font-stretch: expanded;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 2rem;
+}

@@ -56,7 +56,8 @@
             <div class="row">
                 <div class="col text-center py-4">
                     <h1 class="display-3">Active Song Ideas</h1>
-                    <i id="addSongIcon" class="fa fa-plus-circle fa-3x text-danger" aria-hidden="true"> Click Here to
+                    <i id="addSongIcon" class="fa fa-plus-circle fa-3x text-danger bd-example-modal-lg" aria-hidden="true"
+                        data-toggle="modal" data-target="#addNewSongModal">Click Here to
                         Add New Song: </i>
                 </div>
             </div>
@@ -88,19 +89,51 @@
 
 
 
-        <!-- Modal -->
+        <!-- Add New Song Modal -->
+
+
+
+
+
+
+
+        <!-- Add New Song Modal -->
+        <div class="modal fade bd-example-modal-lg" id="addNewSongModal" tabindex="-1" role="dialog" aria-labelledby="addNewSongModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addNewSongModalLabel"></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" id="addNewSongModalBody">
+
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Song Detail Modal -->
         <div class="modal fade bd-example-modal-lg" id="detailsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <h5 class="modal-title" id="exampleModalLabel"></h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        HEREHEREHERE
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -130,16 +163,15 @@
                 function renderSongsToActivePage() {
                     $.get('/music').then((data) => {
                         for (var i = 0; i < data.length; i++) {
-                            $('#active').append(`<div class = "card m-3 songIdea">` +
-                                '<h4 class= "display-4 card-header bg-muted">' + data[i].text + '</h4>' +
+                            $('#active').append(`<div class = "card m-3 activeSong">` +
+                                '<h4 class= "display-4 card-header activeSong-header text-light">' + data[i].text + '</h4>' +
                                 '<div class= "card-body">' +
-                                '<h4 class= "card-text"> Artist: ' + data[i].artist + '<br>' +
+                                '<h4 class= "card-text activeSong-text"> Artist: ' + data[i].artist + '<br>' +
                                 'Username: ' + data[i].username + '<br>' +
                                 'Link: ' + data[i].link + '<br>' +
                                 'Notes: ' + data[i].notes + '<br>' +
                                 'Media: ' + data[i].media + '<br>' +
                                 'Completed: ' + data[i].completed + '</h4>' +
-                                'Id: ' + data[i]._id + '</h4>' +
                                 `<button type="button" _id = ${data[i]._id} class=" detail-btn btn btn-primary bd-example-modal-lg" data-toggle="modal" data-target="#detailsModal">` +
                                 'Details</button>' +
                                 '</div>')
@@ -147,21 +179,78 @@
                     })
                 }
 
+                function renderAddNewSongModal() {
+                    $('#addNewSongModalLabel').empty();
+                    $('#addNewSongModalLabel').append(`<h5 class="text-center">Enter Your New Song Idea</h5>`);
 
-        
+                    $('#addNewSongModalBody').empty();
+                    $('#addNewSongModalBody').append(`
+                    <form>
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-lg" placeholder="Song name">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-lg" placeholder="Username">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-lg" placeholder="Artist">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-lg" placeholder="Link">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" rows="4" class="form-control form-control-lg" placeholder="Notes">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-lg" placeholder="Media">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-lg" placeholder="Link">
+                        </div>               
+                            <input type="submit" value="Submit" class="btn btn-block" id="submitBtnSong">
+                    </form>
+                    `);
+
+                }
+                
+
+
                 $(document).on("click", ".detail-btn", function () {
-                    var index = $(this).attr("_id")
-                    console.log(index)
+
+
+                    var id = $(this).attr("_id")
+                    console.log(id)
                     // console.log(index)
-                    console.log('/music/'+index)
-                    $.get('/music/'+ index).then((data) =>{
+                    console.log('/music/' + id)
+                    $.get('/music/' + (id)).then((data) => {
                         console.log(data)
-                    })                  
+
+                        $('.modal-title').empty()
+                        $('.modal-body').empty()
+
+                        $('.modal-title').html(data.text)
+                        $('.modal-body').append(`Artist: ${data.artist} <br>
+                                                        Username: ${data.username} <br>
+                                                            Link: ${data.link} <br>
+                                                                Notes: ${data.notes} <br>
+                                                                    Media: ${data.media}`)
+                    })
+                })
+
+                $(document).on("click", "#addSongIcon", function () {
+                    renderAddNewSongModal()
+                    $('#submitBtnSong').on("click", ()=>{
+                        $.post('/music').then((r)=>{
+                            console.log(r)
+                        })
+                    })
+
+
                 })
 
 
 
-               
+
 
 
                 // })
