@@ -237,7 +237,7 @@
                     })
                 })
 
-                $(document).on("click", "#addSongIcon", function () {
+                $(document).on("click touchstart", "#addSongIcon", function () {
                     renderAddNewSongModal()
                     $('#submitBtnSong').on("click", ()=>{
                         $.post('/music').then((r)=>{
