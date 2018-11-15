@@ -92,4 +92,6 @@ body{
   font-stretch: expanded;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-size: 2rem;
+  max-width: 100%;
+  margin: auto;
 }

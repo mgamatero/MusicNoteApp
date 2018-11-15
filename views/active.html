@@ -51,142 +51,145 @@
 
 
     <!-- ACTIVE HEADER -->
-    <section id="active-header" class="bg-light text-muted py-5">
+    <section id="active-header" class="bg-light text-muted pt-5 pb-2">
         <div class="container">
             <div class="row">
                 <div class="col text-center py-4">
                     <h1 class="display-3">Active Song Ideas</h1>
-                    <i id="addSongIcon" class="fa fa-plus-circle fa-3x text-danger bd-example-modal-lg" aria-hidden="true"
+                    <div id="addSongIcon" class="btn btn-lg btn-danger bd-example-modal-lg" aria-hidden="true"
                         data-toggle="modal" data-target="#addNewSongModal">Click Here to
-                        Add New Song: </i>
+                        Add New Song: </div>
+                    <!-- <i id="addSongIcon" class="fa fa-plus-circle fa-3x text-danger bd-example-modal-lg" aria-hidden="true"
+                        data-toggle="modal" data-target="#addNewSongModal">Click Here to
+                        Add New Song: </i> -->
                 </div>
             </div>
         </div>
+    </section>
 
-        <!-- ACTIVE SECTION -->
-        <section id="active-section" class="bg-info text-secondary">
-            <div class="container">
-                <div class="row">
-                    <div id="active"></div>
-                </div>
+    <!-- ACTIVE SECTION -->
+    <section id="active-section" class="bg-info text-secondary">
+        <div class="container">
+            <!-- <div class="row"> -->
+                <div id="active"></div>
+            <!-- </div> -->
 
-            </div>
-        </section>
-
-
-        <!-- FOOTER -->
-        <footer id="main-footer" class="bg-dark">
-            <div class="containter">
-                <div class="row">
-                    <div class="col text-center py-4">
-                        <h3>Music Note App</h3>
-                        <p>Copyright mgamatero &copy; <span id="year"></span></p>
-
-                    </div>
-                </div>
-            </div>
-        </footer>
+        </div>
+    </section>
 
 
-
-        <!-- Add New Song Modal -->
-
-
-
-
-
-
-
-        <!-- Add New Song Modal -->
-        <div class="modal fade bd-example-modal-lg" id="addNewSongModal" tabindex="-1" role="dialog" aria-labelledby="addNewSongModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="addNewSongModalLabel"></h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body" id="addNewSongModalBody">
-
-
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    </div>
+    <!-- FOOTER -->
+    <footer id="main-footer" class="bg-dark">
+        <div class="containter">
+            <div class="row">
+                <div class="col text-center py-4">
+                    <h3>Music Note App</h3>
+                    <p>Copyright mgamatero &copy; <span id="year"></span></p>
                 </div>
             </div>
         </div>
+    </footer>
 
 
-        <!-- Song Detail Modal -->
-        <div class="modal fade bd-example-modal-lg" id="detailsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel"></h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
 
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
+    <!-- Add New Song Modal -->
+
+
+
+
+
+
+
+    <!-- Add New Song Modal -->
+    <div class="modal fade bd-example-modal-lg" id="addNewSongModal" tabindex="-1" role="dialog" aria-labelledby="addNewSongModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addNewSongModalLabel"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="addNewSongModalBody">
+
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
-
-        <!-- jQuery minified.  From code.jquery.com, not the Bootstrap site!! -->
-        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-            crossorigin="anonymous"></script>
-        <!-- Popper -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-            crossorigin="anonymous"></script>
-        <!-- Bootstrap -getbootstrap.com -->
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-            crossorigin="anonymous"></script>
-        <script>
-
-            $(document).ready(function () {
-
-                //MAIN
-                renderSongsToActivePage()
+    </div>
 
 
-                function renderSongsToActivePage() {
-                    $.get('/music').then((data) => {
-                        $('#active').empty()
-                        
-                        for (var i = 0; i < data.length; i++) {
-                            $('#active').append(`<div class = "card m-3 activeSong">` +
-                                '<h4 class= "display-4 card-header activeSong-header text-light">' + data[i].text + '</h4>' +
-                                '<div class= "card-body">' +
-                                '<h4 class= "card-text activeSong-text"> Artist: ' + data[i].artist + '<br>' +
-                                'Username: ' + data[i].username + '<br>' +
-                                'Link: ' + data[i].link + '<br>' +
-                                'Notes: ' + data[i].notes + '<br>' +
-                                'Media: ' + data[i].media + '<br>' +
-                                'Completed: ' + data[i].completed + '</h4>' +
-                                `<button type="button" _id = ${data[i]._id} class=" detail-btn btn btn-primary bd-example-modal-lg" data-toggle="modal" data-target="#detailsModal">` +
-                                'Details</button>' +
-                                '</div>')
-                        }
-                    })
-                }
+    <!-- Song Detail Modal -->
+    <div class="modal modal-fluid bd-example-modal-fluid fade" id="detailsModal" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fluid">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
 
-                function renderAddNewSongModal() {
-                    $('#addNewSongModalLabel').empty();
-                    $('#addNewSongModalLabel').append(`<h5 class="text-center">Enter Your New Song Idea</h5>`);
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-                    $('#addNewSongModalBody').empty();
-                    $('#addNewSongModalBody').append(`
+    <!-- jQuery minified.  From code.jquery.com, not the Bootstrap site!! -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <!-- Popper -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <!-- Bootstrap -getbootstrap.com -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+    <script>
+
+        $(document).ready(function () {
+
+            //MAIN
+            renderSongsToActivePage()
+
+
+            function renderSongsToActivePage() {
+                $.get('/music').then((data) => {
+                    $('#active').empty()
+
+                    for (var i = 0; i < data.length; i++) {
+                        $('#active').append(`<div class = "card m-3 activeSong">` +
+                            '<h4 class= "display-4 card-header activeSong-header text-light">' + data[i].text + '</h4>' +
+                            '<div class= "card-body">' +
+                            '<h4 class= "card-text activeSong-text"> Artist: ' + data[i].artist + '<br>' +
+                            'Username: ' + data[i].username + '<br>' +
+                            'Link: ' + data[i].link + '<br>' +
+                            'Notes: ' + data[i].notes + '<br>' +
+                            'Media: ' + data[i].media + '<br>' +
+                            'Completed: ' + data[i].completed + '</h4>' +
+                            `<button type="button" _id = ${data[i]._id} class=" detail-btn btn btn-primary bd-example-modal-lg" data-toggle="modal" data-target="#detailsModal">` +
+                            'Details</button>' +
+                            '</div>')
+                    }
+                })
+            }
+
+            function renderAddNewSongModal() {
+                $('#addNewSongModalLabel').empty();
+                $('#addNewSongModalLabel').append(`<h5 class="text-center">Enter Your New Song Idea</h5>`);
+
+                $('#addNewSongModalBody').empty();
+                $('#addNewSongModalBody').append(`
                     <form>
                         <div class="form-group">
                             <input type="text" class="form-control form-control-lg" placeholder="Song name (required)" id="songNameInput">
@@ -210,83 +213,83 @@
                     </form>
                     `);
 
-                }
+            }
 
 
 
-                $(document).on("click", ".detail-btn", function () {
+            $(document).on("click", ".detail-btn", function () {
 
 
-                    var id = $(this).attr("_id")
-                    console.log(id)
-                    // console.log(index)
-                    console.log('/music/' + id)
-                    $.get('/music/' + (id)).then((data) => {
-                        console.log(data)
+                var id = $(this).attr("_id")
+                console.log(id)
+                // console.log(index)
+                console.log('/music/' + id)
+                $.get('/music/' + (id)).then((data) => {
+                    console.log(data)
 
-                        $('.modal-title').empty()
-                        $('.modal-body').empty()
+                    $('.modal-title').empty()
+                    $('.modal-body').empty()
 
-                        $('.modal-title').html(data.text)
-                        $('.modal-body').append(`Artist: ${data.artist} <br>
+                    $('.modal-title').html(data.text)
+                    $('.modal-body').append(`Artist: ${data.artist} <br>
                                                         Username: ${data.username} <br>
                                                             Link: ${data.link} <br>
                                                                 Notes: ${data.notes} <br>
                                                                     Media: ${data.media}`)
-                    })
                 })
+            })
 
-                $(document).on("click touchstart", "#addSongIcon", function () {
-                    renderAddNewSongModal()
+            $(document).on("click touchstart", "#addSongIcon", function () {
+                renderAddNewSongModal()
+            })
+
+            $(document).on('click', '#submitBtnSong', () => {
+                // alert('Yo')
+                event.preventDefault();
+                var newSongObj = {
+                    text: $('#songNameInput').val().trim(),
+                    username: $('#userNameInput').val().trim(),
+                    artist: $('#artistInput').val().trim(),
+                    link: $('#linkInput').val().trim(),
+                    notes: $('#notesInput').val().trim()
+                    // media: $('#mediaInput').val().trim()
+                }
+
+                alert(newSongObj)
+                console.log(newSongObj)
+
+                $.post('/music', newSongObj).then((r) => {
+                    alert(JSON.stringify(r.text) + " added!")
+                    renderSongsToActivePage()
                 })
-
-                $(document).on('click', '#submitBtnSong', () => {
-                    // alert('Yo')
-                    event.preventDefault();
-                    var newSongObj = {
-                        text: $('#songNameInput').val().trim(),
-                        username: $('#userNameInput').val().trim(),
-                        artist: $('#artistInput').val().trim(),
-                        link: $('#linkInput').val().trim(),
-                        notes: $('#notesInput').val().trim()
-                        // media: $('#mediaInput').val().trim()
-                    }
-
-                    alert(newSongObj)
-                    console.log(newSongObj)
-
-                    $.post('/music',newSongObj).then((r)=>{
-                        alert(JSON.stringify(r.text) + " added!")
-                        renderSongsToActivePage()
-                    })
-                })
-
-
             })
 
 
+        })
 
 
-            //Init Scrollspy
-            $('body').scrollspy({ target: "#main-nav" })
 
-            //Smooth Scrolling
-            $("#main-nav a").on('click', function (event) {
-                if (this.hash !== "") {
-                    event.preventDefault();
 
-                    const hash = this.hash;
+        //Init Scrollspy
+        $('body').scrollspy({ target: "#main-nav" })
 
-                    $('html,body').animate({
-                        scrollTop: $(hash).offset().top
-                    }, 800, function () {
-                        window.location.hash = hash;
-                    });
-                }
-            });
-            
+        //Smooth Scrolling
+        $("#main-nav a").on('click', function (event) {
+            if (this.hash !== "") {
+                event.preventDefault();
 
-        </script>
+                const hash = this.hash;
+
+                $('html,body').animate({
+                    scrollTop: $(hash).offset().top
+                }, 800, function () {
+                    window.location.hash = hash;
+                });
+            }
+        });
+
+
+    </script>
 </body>
 
 </html>
