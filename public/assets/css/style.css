@@ -72,16 +72,21 @@ body{
 }
 
 .activeSong{
-  border: solid 2px rgb(44, 212, 53);
+  border: solid 4px rgb(44, 212, 53);
 }
 
 .activeSong-header{
   background-color: #888f89;
 }
 
-#detailsModal{
-  min-width: 700px;
+.archivedSong{
+  border: solid 2px rgb(44, 159, 212);
 }
+
+.archivedSong-header{
+  background-color: #edf0e4;
+}
+
 
 .modal-title{
   font-stretch: expanded;

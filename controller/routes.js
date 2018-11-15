@@ -24,7 +24,15 @@ app.post('/music', (req, res) => {
 
 
 app.get('/music', (req, res) => {
-    Music.find().then((music) => {
+    Music.find({completed:"false"}).then((music) => {
+        res.json(music)
+    }, (e) => {
+        res.status(400).send()
+    })
+})
+
+app.get('/music/archived', (req, res) => {
+    Music.find({completed:"true"}).then((music) => {
         res.json(music)
     }, (e) => {
         res.status(400).send()

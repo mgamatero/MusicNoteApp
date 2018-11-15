@@ -10,7 +10,7 @@
         crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
     <title>Music Note App</title>
 </head>
 
@@ -45,125 +45,104 @@
         </div>
     </nav>
 
-    <!-- HOME SECTION -->
-    <div class="jumbotron">This is the Archived Homepage</div>
-
-    <div class="col-lg-4">
-        <div class="card bg-primary text-center card-form">
-            <div class="card-body">
-                <h3>Sign Up Today</h3>
-                <h3 id="trymehere"></h3>
-                <p>Please fill out this form to register</p>
-                <form>
-                    <div class="form-group">
-                        <input type="text" class="form-control form-control-lg" placeholder="Username">
-                    </div>
-                    <div class="form-group">
-                        <input type="email" class="form-control form-control-lg" placeholder="Email">
-                    </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control form-control-lg" placeholder="Password">
-                    </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control form-control-lg" placeholder="Confirm-password">
-                    </div>
-                    <input type="submit" value="Submit" class="btn btn-outline-light btn-block">
-                </form>
-            </div>
-        </div>
-    </div>
-    </div>
-    </div>
-    </div>
 
     </header>
 
 
 
-
-
-    <!-- EXPLORE SECTION -->
-    <section id="explore-section" class="bg-light text-muted py-5">
+    <!-- ACTIVE HEADER -->
+    <section id="active-header" class="bg-light text-muted pt-5 pb-2">
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
-                    <img src="img/explore-section1.jpg" alt="" class="img-fluid mb-3 rounded-circle">
-                </div>
-                <div class="col-md-6">
-                    <h3>Explore & Connect</h3>
-                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nihil voluptatum fuga dolores neque
-                        dolor quibusdam sint vitae non sunt quidem.</p>
-                    <div class="d-flex">
-                        <div class="align-self-start p-4">
-                            <i class="fas fa-check fa-2x"></i>
-                        </div>
-                        <div class="align-self-end p-4">
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque incidunt sequi autem
-                            numquam unde! Veniam aliquid optio suscipit voluptatum ducimus.
-                        </div>
-                    </div>
-                    <div class="d-flex">
-                        <div class="align-self-start p-4">
-                            <i class="fas fa-check fa-2x"></i>
-                        </div>
-                        <div class="align-self-end p-4">
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque incidunt sequi autem
-                            numquam unde! Veniam aliquid optio suscipit voluptatum ducimus.
-                        </div>
-                    </div>
+                <div class="col text-center py-4">
+                    <h1 class="display-3 text-primary" id="archivedHeader">Archived Songs</h1>
+                    
+                    <!-- <i id="addSongIcon" class="fa fa-plus-circle fa-3x text-danger bd-example-modal-lg" aria-hidden="true"
+                        data-toggle="modal" data-target="#addNewSongModal">Click Here to
+                        Add New Song: </i> -->
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- ARCHIVED SECTION -->
+    <section id="archived-section" class="bg-info text-secondary">
+        <div class="container">
+            <!-- <div class="row"> -->
+                <div id="archived"></div>
+            <!-- </div> -->
 
         </div>
     </section>
 
 
     <!-- FOOTER -->
-    <footer id="main-footer" class="bg=dark">
+    <footer id="main-footer" class="bg-dark">
         <div class="containter">
             <div class="row">
                 <div class="col text-center py-4">
-                    <h3>LoopLAB</h3>
-                    <p>Copyright &copy; <span id="year"></span></p>
-                    <button class="btn btn-primary" data-toggle="modal1" data-target="#contactModal">Contact Us</button>
+                    <h3>Music Note App</h3>
+                    <p>Copyright mgamatero &copy; <span id="year"></span></p>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- CONTACT MODAL -->
-    <div class="modal fade text-dark" id="contactModal">
-        <div class="modal-dialog">
+
+
+    
+
+
+
+
+
+
+
+    <!-- Add New Song Modal -->
+    <div class="modal fade bd-example-modal-lg" id="addNewSongModal" tabindex="-1" role="dialog" aria-labelledby="addNewSongModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Contact Us</h5>
-                    <button class="close" data-dismiss="modal">
-                        <span>&times;</span>
+                    <h5 class="modal-title" id="addNewSongModalLabel"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea class="form-control"></textarea>
-                        </div>
-                    </form>
+                <div class="modal-body" id="addNewSongModalBody">
+
+
+
                 </div>
                 <div class="modal-footer">
-                    <button class="btn-primary btn-block">Submit</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
     </div>
 
+
+    <!-- Song Detail Modal -->
+    <div class="modal bd-example-modal-fluid fade" id="archivedModal" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fluid">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="archivedModalHeader"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- jQuery minified.  From code.jquery.com, not the Bootstrap site!! -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
@@ -176,24 +155,115 @@
         crossorigin="anonymous"></script>
     <script>
 
-        // $(document).ready(function () {
+        $(document).ready(function () {
 
-        //Get the current year for the copyright
-        // $('#trymehere').text(new Date().getFullYear())
+            //MAIN
+            renderSongsToArchivedPage()
 
 
-        $.get('/music').then((data) => {
-            $('#trymehere').append(JSON.stringify(data))
-            console.log(data)
+            function renderSongsToArchivedPage() {
+                $.get('/music/archived').then((data) => {
+                    $('#archived').empty()
+
+                    for (var i = 0; i < data.length; i++) {
+                        $('#archived').append(`<div class = "card m-3 archivedSong">` +
+                            '<h4 class= "display-4 card-header archivedSong-header text-light">' + data[i].text + '</h4>' +
+                            '<div class= "card-body">' +
+                            '<h4 class= "card-text archivedSong-text"> Artist: ' + data[i].artist + '<br>' +
+                            'Username: ' + data[i].username + '<br>' +
+                            'Link: ' + data[i].link + '<br>' +
+                            'Notes: ' + data[i].notes + '<br>' +
+                            'Media: ' + data[i].media + '<br>' +
+                            'Completed: ' + data[i].completed + '</h4>' +
+                            `<button type="button" _id = ${data[i]._id} class=" detail-btn btn btn-primary bd-example-modal-lg" data-toggle="modal" data-target="#detailsModal">` +
+                            'Details</button>' +
+                            '</div>')
+                    }
+                })
+            }
+
+            function renderAddNewSongModal() {
+                $('#addNewSongModalLabel').empty();
+                $('#addNewSongModalLabel').append(`<h5 class="text-center">Enter Your New Song Idea</h5>`);
+
+                $('#addNewSongModalBody').empty();
+                $('#addNewSongModalBody').append(`
+                    <form>
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-lg" placeholder="Song name (required)" id="songNameInput">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-lg" placeholder="Username (required)" id="userNameInput">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-lg" placeholder="Artist" id="artistInput">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-lg" placeholder="Link" id="linkInput">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" rows="4" class="form-control form-control-lg" placeholder="Notes" id="notesInput">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-lg" placeholder="Media" id=" mediaInput">
+                        </div>      
+                            <input type="submit" value="Submit" class="btn btn-block" id="submitBtnSong">
+                    </form>
+                    `);
+
+            }
+
+
+
+            $(document).on("click", ".detail-btn", function () {
+
+
+                var id = $(this).attr("_id")
+                console.log(id)
+                // console.log(index)
+                console.log('/music/' + id)
+                $.get('/music/' + (id)).then((data) => {
+                    console.log(data)
+
+                    $('.modal-title').empty()
+                    $('.modal-body').empty()
+
+                    $('.modal-title').html(data.text)
+                    $('.modal-body').append(`Artist: ${data.artist} <br>
+                                                        Username: ${data.username} <br>
+                                                            Link: ${data.link} <br>
+                                                                Notes: ${data.notes} <br>
+                                                                    Media: ${data.media}`)
+                })
+            })
+
+            $(document).on("click touchstart", "#addSongIcon", function () {
+                renderAddNewSongModal()
+            })
+
+            $(document).on('click', '#submitBtnSong', () => {
+                // alert('Yo')
+                event.preventDefault();
+                var newSongObj = {
+                    text: $('#songNameInput').val().trim(),
+                    username: $('#userNameInput').val().trim(),
+                    artist: $('#artistInput').val().trim(),
+                    link: $('#linkInput').val().trim(),
+                    notes: $('#notesInput').val().trim()
+                    // media: $('#mediaInput').val().trim()
+                }
+
+                alert(newSongObj)
+                console.log(newSongObj)
+
+                $.post('/music', newSongObj).then((r) => {
+                    alert(JSON.stringify(r.text) + " added!")
+                    renderSongsToArchivedPage()
+                })
+            })
 
 
         })
-
-        // })
-
-
-
-
 
 
 
@@ -215,6 +285,7 @@
                 });
             }
         });
+
 
     </script>
 </body>
