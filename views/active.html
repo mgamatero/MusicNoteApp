@@ -177,8 +177,12 @@
                             'Notes: ' + data[i].notes + '<br>' +
                             'Media: ' + data[i].media + '<br>' +
                             'Completed: ' + data[i].completed + '</h4>' +
-                            `<button type="button" _id = ${data[i]._id} class=" detail-btn btn btn-primary bd-example-modal-lg" data-toggle="modal" data-target="#detailsModal">` +
+                            `<button type="button" _id = ${data[i]._id} class=" detail-btn btn btn-primary bd-example-modal-lg m-3" data-toggle="modal" data-target="#detailsModal">` +
                             'Details</button>' +
+                            `<button type="button" _id-update = ${data[i]._id} class=" update-btn btn btn-warning bd-example-modal-lg m-3" data-toggle="modal" data-target="#detailsModal">` +
+                            'Update</button>' +
+                            `<button type="button" _id-delete = ${data[i]._id} class=" delete-btn btn btn-danger m-3">` +
+                            'Delete</button>' +
                             '</div>')
                     }
                 })
@@ -186,7 +190,7 @@
 
             function renderAddNewSongModal() {
                 $('#addNewSongModalLabel').empty();
-                $('#addNewSongModalLabel').append(`<h5 class="text-center">Enter Your New Song Idea</h5>`);
+                $('#addNewSongModalLabel').append(`<h5 class="text-center text-success">Enter New Song Idea</h5>`);
 
                 $('#addNewSongModalBody').empty();
                 $('#addNewSongModalBody').append(`
@@ -218,8 +222,6 @@
 
 
             $(document).on("click", ".detail-btn", function () {
-
-
                 var id = $(this).attr("_id")
                 console.log(id)
                 // console.log(index)
@@ -237,6 +239,18 @@
                                                                 Notes: ${data.notes} <br>
                                                                     Media: ${data.media}`)
                 })
+            })
+
+            $(document).on('click','.delete-btn', function () {
+                var id_delete = $(this).attr("_id-delete")
+                
+
+                //delete? here we go again?
+                $.post('/music/delete/' + (id_delete)).then((data) => {
+                    console.log('Deleted '+data.text)
+                    renderSongsToActivePage()
+                })
+
             })
 
             $(document).on("click touchstart", "#addSongIcon", function () {
@@ -264,7 +278,7 @@
                 })
             })
 
-
+            
         })
 
 

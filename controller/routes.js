@@ -68,21 +68,14 @@ app.get('/music/:id', (req, res) => {
 // })
 
 
-app.delete('/music/:id', (req, res) => {
+app.post('/music/delete/:id', (req, res) => {
 
-    if (!ObjectID.isValid(req.params.id)) {
-        return res.status(404).send()
-    }
-
-
-    Music.findByIdAndRemove(req.params.id).then((result) => {
+    Music.findOneAndRemove({ _id:req.params.id}).then((result) => {
         if (!result) {
             return res.status(404).send()
         }
         res.send({ result })
-    }).catch((e) => {
-        res.status(400).send()
-    })
+   })
 })
 
 app.patch('/music/:id', (req, res) => {

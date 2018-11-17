@@ -87,11 +87,13 @@ body{
   background-color: #edf0e4;
 }
 
-
+.modal-header{
+  background-color: rgb(161, 165, 161);
+}
 .modal-title{
   font-stretch: expanded;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  font-size: 3rem;
+  font-size: 4rem;
 }
 .modal-body{
   font-stretch: expanded;
