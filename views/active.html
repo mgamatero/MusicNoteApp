@@ -59,9 +59,6 @@
                     <div id="addSongIcon" class="btn btn-lg btn-danger bd-example-modal-lg" aria-hidden="true"
                         data-toggle="modal" data-target="#addNewSongModal">Click Here to
                         Add New Song: </div>
-                    <!-- <i id="addSongIcon" class="fa fa-plus-circle fa-3x text-danger bd-example-modal-lg" aria-hidden="true"
-                        data-toggle="modal" data-target="#addNewSongModal">Click Here to
-                        Add New Song: </i> -->
                 </div>
             </div>
         </div>
@@ -70,9 +67,9 @@
     <!-- ACTIVE SECTION -->
     <section id="active-section" class="bg-info text-secondary">
         <div class="container">
-            <!-- <div class="row"> -->
-                <div id="active"></div>
-            <!-- </div> -->
+
+            <div id="active"></div>
+
 
         </div>
     </section>
@@ -92,7 +89,7 @@
 
 
 
-    
+
 
 
 
@@ -124,9 +121,34 @@
     </div>
 
 
+    <!-- Update Song Modal -->
+    <div class="modal fade bd-example-modal-lg" id="updateSongModal" tabindex="-1" role="dialog" aria-labelledby="updateSongModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="updateSongModalLabel"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="updateSongModalBody">
+
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
     <!-- Song Detail Modal -->
-    <div class="modal bd-example-modal-fluid fade" id="detailsModal" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal bd-example-modal-fluid fade" id="detailsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog modal-fluid">
             <div class="modal-content">
                 <div class="modal-header">
@@ -135,7 +157,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body detailsModalBody">
 
                 </div>
                 <div class="modal-footer">
@@ -179,7 +201,7 @@
                             'Completed: ' + data[i].completed + '</h4>' +
                             `<button type="button" _id = ${data[i]._id} class=" detail-btn btn btn-primary bd-example-modal-lg m-3" data-toggle="modal" data-target="#detailsModal">` +
                             'Details</button>' +
-                            `<button type="button" _id-update = ${data[i]._id} class=" update-btn btn btn-warning bd-example-modal-lg m-3" data-toggle="modal" data-target="#detailsModal">` +
+                            `<button type="button" _id-update = ${data[i]._id} class=" update-btn btn btn-warning bd-example-modal-lg m-3" data-toggle="modal" data-target="#updateSongModal">` +
                             'Update</button>' +
                             `<button type="button" _id-delete = ${data[i]._id} class=" delete-btn btn btn-danger m-3">` +
                             'Delete</button>' +
@@ -221,6 +243,42 @@
 
 
 
+            function renderUpdateSongModal(info) {
+
+
+
+                $('#updateSongModalLabel').empty();
+                $('#updateSongModalLabel').append(`<h5 class="text-center text-danger">Update</h5>`);
+
+                $('#updateSongModalBody').empty();
+                $('#updateSongModalBody').append(`
+                    <form>
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-lg" placeholder="Song name (required)" id="songNameInput" value=${info.text}>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-lg" placeholder="Username (required)" id="userNameInput" value=${info.username}>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-lg" placeholder="Artist" id="artistInput" value=${info.artist}>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-lg" placeholder="Link" id="linkInput" value=${info.link}>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" rows="4" class="form-control form-control-lg" placeholder="Notes" id="notesInput" value=${info.notes}>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-lg" placeholder="Media" id=" mediaInput" value=${info.media}>
+                        </div>      
+                            <input type="submit" value="Submit" class="btn btn-block" id="submit-update-btn">
+                    </form>
+                    `);
+
+            }
+
+
+
             $(document).on("click", ".detail-btn", function () {
                 var id = $(this).attr("_id")
                 console.log(id)
@@ -233,7 +291,10 @@
                     $('.modal-body').empty()
 
                     $('.modal-title').html(data.text)
-                    $('.modal-body').append(`Artist: ${data.artist} <br>
+
+                    $('.detailsModalBody').addClass('text-muted')
+
+                    $('.detailsModalBody').append(`Artist: ${data.artist} <br>
                                                         Username: ${data.username} <br>
                                                             Link: ${data.link} <br>
                                                                 Notes: ${data.notes} <br>
@@ -241,13 +302,48 @@
                 })
             })
 
-            $(document).on('click','.delete-btn', function () {
+
+            $(document).on("click", ".update-btn", function () {
+                var id = $(this).attr("_id-update")
+                console.log(id)
+                // console.log(index)
+                console.log('/music/update/' + id)
+                $.get('/music/' + id).then((data) => {
+                    renderUpdateSongModal(data)
+                })
+
+                $(document).on("click", "#submit-update-btn", () => {
+                    $.post('/music/update/'+id).then((data)=>{
+                        alert(data.text + " updated!")
+                    })
+                })
+
+
+                // $.post('/music/update/' + (id)).then((data) => {
+                //     console.log(data)
+
+                //     $('.modal-title').empty()
+                //     $('.modal-body').empty()
+
+                //     $('.modal-title').html(data.text)
+
+                //     $('.detailsModalBody').addClass('text-muted')
+
+                //     $('.detailsModalBody').append(`Artist: ${data.artist} <br>
+                //                                         Username: ${data.username} <br>
+                //                                             Link: ${data.link} <br>
+                //                                                 Notes: ${data.notes} <br>
+                //                                                     Media: ${data.media}`)
+                // })
+            })
+
+            $(document).on('click', '.delete-btn', function () {
                 var id_delete = $(this).attr("_id-delete")
-                
+
 
                 //delete? here we go again?
                 $.post('/music/delete/' + (id_delete)).then((data) => {
-                    console.log('Deleted '+data.text)
+                    console.log('Deleted ' + data.text)
                     renderSongsToActivePage()
                 })
 
@@ -278,7 +374,7 @@
                 })
             })
 
-            
+
         })
 
 
