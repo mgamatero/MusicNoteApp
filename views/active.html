@@ -98,7 +98,7 @@
 
 
     <!-- Add New Song Modal -->
-    <div class="modal fade bd-example-modal-lg" id="addNewSongModal" tabindex="-1" role="dialog" aria-labelledby="addNewSongModalLabel"
+    <div class="modal modal-fluid fade" id="addNewSongModal" tabindex="-1" role="dialog" aria-labelledby="addNewSongModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -122,7 +122,7 @@
 
 
     <!-- Update Song Modal -->
-    <div class="modal fade bd-example-modal-lg" id="updateSongModal" tabindex="-1" role="dialog" aria-labelledby="updateSongModalLabel"
+    <div class="modal modal-fluid fade" id="updateSongModal" tabindex="-1" role="dialog" aria-labelledby="updateSongModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -147,9 +147,9 @@
 
 
     <!-- Song Detail Modal -->
-    <div class="modal bd-example-modal-fluid fade" id="detailsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="modal modal-fluid fade" id="detailsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog modal-fluid">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="detailsModalHeader"></h5>
@@ -193,10 +193,10 @@
                         $('#active').append(`<div class = "card m-3 activeSong">` +
                             '<h4 class= "display-4 card-header activeSong-header text-light">' + data[i].text + '</h4>' +
                             '<div class= "card-body">' +
-                            '<h4 class= "card-text activeSong-text"> Artist: ' + data[i].artist + '<br>' +
+                            '<h4 class= "card-text activeSong-text form-group"> Artist: ' + data[i].artist + '<br>' +
                             'Username: ' + data[i].username + '<br>' +
                             'Link: ' + data[i].link + '<br>' +
-                            'Notes: <br> <textarea readonly>'+data[i].notes+'</textarea> <br>' +
+                            'Notes: <br> <textarea readonly class="form-control">'+data[i].notes+'</textarea> <br>' +
                             'Media: ' + data[i].media + '<br>' +
                             'Completed: ' + data[i].completed + '</h4>' +
                             `<button type="button" _id = ${data[i]._id} class=" detail-btn btn btn-primary bd-example-modal-lg m-3" data-toggle="modal" data-target="#detailsModal">` +
@@ -212,7 +212,7 @@
 
             function renderAddNewSongModal() {
                 $('#addNewSongModalLabel').empty();
-                $('#addNewSongModalLabel').append(`<h5 class="text-center text-success">Enter New Song Idea</h5>`);
+                $('#addNewSongModalLabel').append(`<h5 class="text center text-success">Enter New Song Idea</h5>`);
 
                 $('#addNewSongModalBody').empty();
                 $('#addNewSongModalBody').append(`
@@ -230,7 +230,7 @@
                             <input type="text" class="form-control form-control-lg" placeholder="Link" id="linkInput">
                         </div>
                         <div class="form-group">
-                            <textarea rows="4" placeholder="Notes" id="notesInput"></textarea>
+                            <textarea class="form-control" rows="4" placeholder="Notes" id="notesInput"></textarea>
                         </div>
                         <div class="form-group">
                             <input type="text" class="form-control form-control-lg" placeholder="Media" id=" mediaInput">
@@ -299,7 +299,8 @@
                     $('.detailsModalBody').append(`Artist: ${data.artist} <br>
                                                         Username: ${data.username} <br>
                                                             Link: <a href="${data.link}" target="_blank">${data.link}</a> <br>
-                                                                Notes: ${data.notes} <br>
+                                                            Notes: <br>
+                                                                <textarea readonly class="form-control">${data.notes} </textarea><br>
                                                                     Media: ${data.media}`)
                 })
             })
