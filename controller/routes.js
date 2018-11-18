@@ -48,30 +48,36 @@ module.exports = function (app) {
         })
     })
 
-    // app.get('/music/?id', (req, res) => {
-    //     var convertedID = mongoose.Types.ObjectId(req.params.id)
-    //     // var convertedID = mongoose.Types.ObjectId(req.params.id)
-
-    //     if (!ObjectID.isValid(req.params.id)) {
-    //         return res.status(404).send()
-    //     }
-
-    //     Music.find({}).then((music) => {
-    //         if (!music) {
-    //             console.log('Die here')
-    //             return res.status(404).send()
-    //         }
-    //         res.json(music)
-    //     }, (e) => {
-    //         res.status(400).send()
-    //     })
-    // })
-
+   
 
     app.post('/music/delete/:id', (req, res) => {
 
         Music.findOneAndRemove({ _id: req.params.id }).then((result) => {
             if (!result) {
+                return res.status(404).send()
+            }
+            res.send({ result })
+        })
+    })
+
+
+    app.post('/music/complete/:id', (req, res) => {
+
+        Music.findOneAndUpdate({ _id: req.params.id },
+            { $set:{ completed:true}}).then((result) => {
+            if (!result) {  
+                return res.status(404).send()
+            }
+            res.send({ result })
+        })
+    })
+
+
+    app.post('/music/activate/:id', (req, res) => {
+
+        Music.findOneAndUpdate({ _id: req.params.id },
+            { $set:{ completed:false}}).then((result) => {
+            if (!result) {  
                 return res.status(404).send()
             }
             res.send({ result })
@@ -132,7 +138,7 @@ module.exports = function (app) {
 
 
 
-    
+
 
 
 

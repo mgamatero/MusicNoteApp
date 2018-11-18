@@ -64,15 +64,23 @@ body{
 
 
 #active-section{
-  background: url("../img/home.jpg");
+  background: url("../img/active-compose.jpg");
   background-repeat:no-repeat;
   background-size:cover;
   background-attachment:fixed;
-  min-height: 500px;
+  min-height: 300px;
+}
+
+#archived-section{
+  background: url("../img/archived-mic.jpg");
+  background-repeat:no-repeat;
+  background-size:cover;
+  background-attachment:fixed;
+  min-height: 300px;
 }
 
 .activeSong{
-  border: solid 4px rgb(44, 212, 53);
+  border: solid 6px rgb(15, 109, 20);
 }
 
 .activeSong-header{
@@ -80,11 +88,11 @@ body{
 }
 
 .archivedSong{
-  border: solid 2px rgb(44, 159, 212);
+  border: solid 6px rgb(22, 106, 145);
 }
 
 .archivedSong-header{
-  background-color: #edf0e4;
+  background-color: #040501;
 }
 
 .modal-header{

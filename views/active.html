@@ -188,7 +188,6 @@
             function renderSongsToActivePage() {
                 $.get('/music').then((data) => {
                     $('#active').empty()
-
                     for (var i = 0; i < data.length; i++) {
                         $('#active').append(`<div class = "card m-3 activeSong">` +
                             '<h4 class= "display-4 card-header activeSong-header text-light">' + data[i].text + '</h4>' +
@@ -205,6 +204,31 @@
                             'Update</button>' +
                             `<button type="button" _id-delete = ${data[i]._id} class=" delete-btn btn btn-danger m-3">` +
                             'Delete</button>' +
+                            `<button type="button" _id-complete = ${data[i]._id} class=" complete-btn btn btn-success m-3">` +
+                            'Mark as Complete</button>' +
+                            '</div>')
+                    }
+                })
+            }
+
+
+             function renderSongsToArchivedPage() {
+                $.get('/music/archived').then((data) => {
+                    $('#archived').empty()
+                    for (var i = 0; i < data.length; i++) {
+                        $('#archived').append(`<div class = "card m-3 archivedSong">` +
+                            '<h4 class= "display-4 card-header archivedSong-header text-light">' + data[i].text + '</h4>' +
+                            '<div class= "card-body">' +
+                            '<h4 class= "card-text archivedSong-text form-group"> Artist: ' + data[i].artist + '<br>' +
+                            'Username: ' + data[i].username + '<br>' +
+                            'Link: ' + data[i].link + '<br>' +
+                            'Notes: <br> <textarea readonly class="form-control">'+data[i].notes+'</textarea> <br>' +
+                            'Media: ' + data[i].media + '<br>' +
+                            'Completed: ' + data[i].completed + '</h4>' +
+                            `<button type="button" _id = ${data[i]._id} class=" detail-btn btn btn-primary bd-example-modal-lg m-3" data-toggle="modal" data-target="#detailsModal">` +
+                            'Details</button>' +
+                            `<button type="button" _id-backToActive = ${data[i]._id} class=" backToActive-btn btn btn-success m-3">` +
+                            'Mark as Active</button>' +
                             '</div>')
                     }
                 })
@@ -246,9 +270,6 @@
 
 
             function renderUpdateSongModal(info) {
-
-
-
                 $('#updateSongModalLabel').empty();
                 $('#updateSongModalLabel').append(`<h5 class="text-center text-danger">Update</h5>`);
 
@@ -276,7 +297,6 @@
                             <input type="submit" value="Submit" class="btn btn-block" id="submit-update-btn">
                     </form>
                     `);
-
             }
 
 
@@ -351,6 +371,17 @@
                 })
 
             })
+
+//Mark as Complete - Moves to archives section
+            $(document).on('click', '.complete-btn', function () {
+                var id_complete = $(this).attr("_id-complete")
+                    $.post('/music/complete/' + (id_complete)).then((data) => {
+                    alert(data.text + " moved to Archive")
+                    renderSongsToActivePage()
+                })
+            })
+
+
 
             $(document).on("click touchstart", "#addSongIcon", function () {
                 renderAddNewSongModal()

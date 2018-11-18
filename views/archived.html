@@ -50,16 +50,12 @@
 
 
 
-    <!-- ACTIVE HEADER -->
-    <section id="active-header" class="bg-light text-muted pt-5 pb-2">
+    <!-- ARCHIVED SECTION -->
+    <section id="archived-header" class="bg-light text-muted pt-5 pb-2">
         <div class="container">
             <div class="row">
                 <div class="col text-center py-4">
                     <h1 class="display-3 text-primary" id="archivedHeader">Archived Songs</h1>
-                    
-                    <!-- <i id="addSongIcon" class="fa fa-plus-circle fa-3x text-danger bd-example-modal-lg" aria-hidden="true"
-                        data-toggle="modal" data-target="#addNewSongModal">Click Here to
-                        Add New Song: </i> -->
                 </div>
             </div>
         </div>
@@ -69,7 +65,7 @@
     <section id="archived-section" class="bg-info text-secondary">
         <div class="container">
             <!-- <div class="row"> -->
-                <div id="archived"></div>
+            <div id="archived"></div>
             <!-- </div> -->
 
         </div>
@@ -90,7 +86,7 @@
 
 
 
-    
+
 
 
 
@@ -123,8 +119,8 @@
 
 
     <!-- Song Detail Modal -->
-    <div class="modal bd-example-modal-fluid fade" id="archivedModal" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal bd-example-modal-fluid fade" id="archivedModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog modal-fluid">
             <div class="modal-content">
                 <div class="modal-header">
@@ -164,60 +160,27 @@
             function renderSongsToArchivedPage() {
                 $.get('/music/archived').then((data) => {
                     $('#archived').empty()
-
                     for (var i = 0; i < data.length; i++) {
                         $('#archived').append(`<div class = "card m-3 archivedSong">` +
                             '<h4 class= "display-4 card-header archivedSong-header text-light">' + data[i].text + '</h4>' +
                             '<div class= "card-body">' +
-                            '<h4 class= "card-text archivedSong-text"> Artist: ' + data[i].artist + '<br>' +
+                            '<h4 class= "card-text archivedSong-text form-group"> Artist: ' + data[i].artist + '<br>' +
                             'Username: ' + data[i].username + '<br>' +
                             'Link: ' + data[i].link + '<br>' +
-                            'Notes: ' + data[i].notes + '<br>' +
+                            'Notes: <br> <textarea readonly class="form-control">' + data[i].notes + '</textarea> <br>' +
                             'Media: ' + data[i].media + '<br>' +
                             'Completed: ' + data[i].completed + '</h4>' +
-                            `<button type="button" _id = ${data[i]._id} class=" detail-btn btn btn-primary bd-example-modal-lg" data-toggle="modal" data-target="#detailsModal">` +
+                            `<button type="button" _id = ${data[i]._id} class=" detail-btn btn btn-primary bd-example-modal-lg m-3" data-toggle="modal" data-target="#detailsModal">` +
                             'Details</button>' +
+                            `<button type="button" _id-backToActive = ${data[i]._id} class=" backToActive-btn btn btn-success m-3">` +
+                            'Send Back to Active</button>' +
                             '</div>')
                     }
                 })
             }
 
-            function renderAddNewSongModal() {
-                $('#addNewSongModalLabel').empty();
-                $('#addNewSongModalLabel').append(`<h5 class="text-center">Enter Your New Song Idea</h5>`);
-
-                $('#addNewSongModalBody').empty();
-                $('#addNewSongModalBody').append(`
-                    <form>
-                        <div class="form-group">
-                            <input type="text" class="form-control form-control-lg" placeholder="Song name (required)" id="songNameInput">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control form-control-lg" placeholder="Username (required)" id="userNameInput">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control form-control-lg" placeholder="Artist" id="artistInput">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control form-control-lg" placeholder="Link" id="linkInput">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" rows="4" class="form-control form-control-lg" placeholder="Notes" id="notesInput">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control form-control-lg" placeholder="Media" id=" mediaInput">
-                        </div>      
-                            <input type="submit" value="Submit" class="btn btn-block" id="submitBtnSong">
-                    </form>
-                    `);
-
-            }
-
-
 
             $(document).on("click", ".detail-btn", function () {
-
-
                 var id = $(this).attr("_id")
                 console.log(id)
                 // console.log(index)
@@ -237,27 +200,12 @@
                 })
             })
 
-            $(document).on("click touchstart", "#addSongIcon", function () {
-                renderAddNewSongModal()
-            })
 
-            $(document).on('click', '#submitBtnSong', () => {
-                // alert('Yo')
-                event.preventDefault();
-                var newSongObj = {
-                    text: $('#songNameInput').val().trim(),
-                    username: $('#userNameInput').val().trim(),
-                    artist: $('#artistInput').val().trim(),
-                    link: $('#linkInput').val().trim(),
-                    notes: $('#notesInput').val().trim()
-                    // media: $('#mediaInput').val().trim()
-                }
-
-                alert(newSongObj)
-                console.log(newSongObj)
-
-                $.post('/music', newSongObj).then((r) => {
-                    alert(JSON.stringify(r.text) + " added!")
+//Mark as Complete - Moves back to active section
+$(document).on('click', '.backToActive-btn', function () {
+                var id_active = $(this).attr("_id-backToActive")
+                    $.post('/music/activate/' + (id_active)).then((data) => {
+                    alert(data.text + " moved to Active")
                     renderSongsToArchivedPage()
                 })
             })
