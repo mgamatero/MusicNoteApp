@@ -10,7 +10,7 @@ body{
 }
 
 #home-section{
-  background: url("../img/homemic.jpg");
+  background: url("./assets/img/homemic.jpg");
   background-repeat:no-repeat;
   background-size:cover;
   background-attachment:fixed;
@@ -63,7 +63,7 @@ body{
 
 
 #active-section{
-  background: url("../img/activecompose.jpg");
+  background: url("./assets/img/activecompose.jpg");
   background-repeat:no-repeat;
   background-size:cover;
   background-attachment:fixed;
@@ -71,7 +71,7 @@ body{
 }
 
 #archived-section{
-  background: url("../img/archivedmic.jpg");
+  background: url("./assets/img/archivedmic.jpg");
   background-repeat:no-repeat;
   background-size:cover;
   background-attachment:fixed;
