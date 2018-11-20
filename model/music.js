@@ -15,27 +15,27 @@ var Music = new Schema ({
     },
     artist: {
         type: String,
-        required: true,
-        minlength: 1,
-        trim:true
+        required: false,
+        trim:true,
+        default: "Unknown artist"
   },
     link: {
         type: String,
         required: false,
         trim:true, 
-        default: "----"
+        default: "No Link"
     },
        notes: {
         type: String,
         required: false,
         trim:true,
-        default: "----"
+        default: "No Notes"
     },
        media: {  //gridFs in the future?
-        type: String,
+        type: Buffer,
         required: false,
         trim:true,
-        default: "----"
+        default: "No Audio File"
     },
     completed: {
         type: Boolean,

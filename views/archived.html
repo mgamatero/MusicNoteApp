@@ -85,43 +85,10 @@
     </footer>
 
 
-
-
-
-
-
-
-
-
-
-    <!-- Add New Song Modal -->
-    <div class="modal fade bd-example-modal-lg" id="addNewSongModal" tabindex="-1" role="dialog" aria-labelledby="addNewSongModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="addNewSongModalLabel"></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body" id="addNewSongModalBody">
-
-
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
     <!-- Song Detail Modal -->
     <div class="modal bd-example-modal-fluid fade" id="archivedModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog modal-fluid">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="archivedModalHeader"></h5>
@@ -129,12 +96,11 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body archivedModalBody">
 
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
         </div>
@@ -170,7 +136,7 @@
                             'Notes: <br> <textarea readonly class="form-control">' + data[i].notes + '</textarea> <br>' +
                             'Media: ' + data[i].media + '<br>' +
                             'Completed: ' + data[i].completed + '</h4>' +
-                            `<button type="button" _id = ${data[i]._id} class=" detail-btn btn btn-primary bd-example-modal-lg m-3" data-toggle="modal" data-target="#detailsModal">` +
+                            `<button type="button" _id = ${data[i]._id} class=" detail-btn btn btn-primary bd-example-modal-lg m-3" data-toggle="modal" data-target="#archivedModal">` +
                             'Details</button>' +
                             `<button type="button" _id-backToActive = ${data[i]._id} class=" backToActive-btn btn btn-success m-3">` +
                             'Send Back to Active</button>' +
@@ -181,9 +147,7 @@
 
 
             $(document).on("click", ".detail-btn", function () {
-                var id = $(this).attr("_id")
-                console.log(id)
-                // console.log(index)
+                var id = $(this).attr("_id")               
                 console.log('/music/' + id)
                 $.get('/music/' + (id)).then((data) => {
                     console.log(data)
@@ -192,23 +156,31 @@
                     $('.modal-body').empty()
 
                     $('.modal-title').html(data.text)
-                    $('.modal-body').append(`Artist: ${data.artist} <br>
+
+                    $('.archivedModalBody').addClass('text-muted')
+
+                    $('.archivedModalBody').append(`Artist: ${data.artist} <br>
                                                         Username: ${data.username} <br>
-                                                            Link: ${data.link} <br>
-                                                                Notes: ${data.notes} <br>
+                                                            Link: <a href="${data.link}" target="_blank">${data.link}</a> <br>
+                                                            Notes: <br>
+                                                                <textarea readonly class="form-control">${data.notes} </textarea><br>
                                                                     Media: ${data.media}`)
                 })
             })
 
 
-//Mark as Complete - Moves back to active section
-$(document).on('click', '.backToActive-btn', function () {
+
+
+            //Mark as Complete - Moves back to active section
+            $(document).on('click', '.backToActive-btn', function () {
                 var id_active = $(this).attr("_id-backToActive")
-                    $.post('/music/activate/' + (id_active)).then((data) => {
+                $.post('/music/activate/' + (id_active)).then((data) => {
                     alert(data.text + " moved to Active")
                     renderSongsToArchivedPage()
                 })
             })
+
+
 
 
         })

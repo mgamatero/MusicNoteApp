@@ -44,8 +44,6 @@
             </div>
         </div>
     </nav>
-
-
     </header>
 
 
@@ -90,13 +88,6 @@
 
 
 
-
-
-
-
-
-
-
     <!-- Add New Song Modal -->
     <div class="modal modal-fluid fade" id="addNewSongModal" tabindex="-1" role="dialog" aria-labelledby="addNewSongModalLabel"
         aria-hidden="true">
@@ -109,9 +100,7 @@
                     </button>
                 </div>
                 <div class="modal-body" id="addNewSongModalBody">
-
-
-
+                    <!-- Add New Song Form goes here -->
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -133,8 +122,7 @@
                     </button>
                 </div>
                 <div class="modal-body" id="updateSongModalBody">
-
-
+                    <!-- Update Song Form goes here -->
 
                 </div>
                 <div class="modal-footer">
@@ -143,7 +131,6 @@
             </div>
         </div>
     </div>
-
 
 
     <!-- Song Detail Modal -->
@@ -158,11 +145,10 @@
                     </button>
                 </div>
                 <div class="modal-body detailsModalBody">
-
+                    <!-- Song Details go here -->
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
         </div>
@@ -180,127 +166,10 @@
     <script>
 
         $(document).ready(function () {
-
-            //MAIN
             renderSongsToActivePage()
+   
 
-
-            function renderSongsToActivePage() {
-                $.get('/music').then((data) => {
-                    $('#active').empty()
-                    for (var i = 0; i < data.length; i++) {
-                        $('#active').append(`<div class = "card m-3 activeSong">` +
-                            '<h4 class= "display-4 card-header activeSong-header text-light">' + data[i].text + '</h4>' +
-                            '<div class= "card-body">' +
-                            '<h4 class= "card-text activeSong-text form-group"> Artist: ' + data[i].artist + '<br>' +
-                            'Username: ' + data[i].username + '<br>' +
-                            'Link: ' + data[i].link + '<br>' +
-                            'Notes: <br> <textarea readonly class="form-control">'+data[i].notes+'</textarea> <br>' +
-                            'Media: ' + data[i].media + '<br>' +
-                            'Completed: ' + data[i].completed + '</h4>' +
-                            `<button type="button" _id = ${data[i]._id} class=" detail-btn btn btn-primary bd-example-modal-lg m-3" data-toggle="modal" data-target="#detailsModal">` +
-                            'Details</button>' +
-                            `<button type="button" _id-update = ${data[i]._id} class=" update-btn btn btn-warning bd-example-modal-lg m-3" data-toggle="modal" data-target="#updateSongModal">` +
-                            'Update</button>' +
-                            `<button type="button" _id-delete = ${data[i]._id} class=" delete-btn btn btn-danger m-3">` +
-                            'Delete</button>' +
-                            `<button type="button" _id-complete = ${data[i]._id} class=" complete-btn btn btn-success m-3">` +
-                            'Mark as Complete</button>' +
-                            '</div>')
-                    }
-                })
-            }
-
-
-             function renderSongsToArchivedPage() {
-                $.get('/music/archived').then((data) => {
-                    $('#archived').empty()
-                    for (var i = 0; i < data.length; i++) {
-                        $('#archived').append(`<div class = "card m-3 archivedSong">` +
-                            '<h4 class= "display-4 card-header archivedSong-header text-light">' + data[i].text + '</h4>' +
-                            '<div class= "card-body">' +
-                            '<h4 class= "card-text archivedSong-text form-group"> Artist: ' + data[i].artist + '<br>' +
-                            'Username: ' + data[i].username + '<br>' +
-                            'Link: ' + data[i].link + '<br>' +
-                            'Notes: <br> <textarea readonly class="form-control">'+data[i].notes+'</textarea> <br>' +
-                            'Media: ' + data[i].media + '<br>' +
-                            'Completed: ' + data[i].completed + '</h4>' +
-                            `<button type="button" _id = ${data[i]._id} class=" detail-btn btn btn-primary bd-example-modal-lg m-3" data-toggle="modal" data-target="#detailsModal">` +
-                            'Details</button>' +
-                            `<button type="button" _id-backToActive = ${data[i]._id} class=" backToActive-btn btn btn-success m-3">` +
-                            'Mark as Active</button>' +
-                            '</div>')
-                    }
-                })
-            }
-
-            function renderAddNewSongModal() {
-                $('#addNewSongModalLabel').empty();
-                $('#addNewSongModalLabel').append(`<h5 class="text center text-success">Enter New Song Idea</h5>`);
-
-                $('#addNewSongModalBody').empty();
-                $('#addNewSongModalBody').append(`
-                    <form>
-                        <div class="form-group">
-                            <input type="text" class="form-control form-control-lg" placeholder="Song name (required)" id="songNameInput">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control form-control-lg" placeholder="Username (required)" id="userNameInput">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control form-control-lg" placeholder="Artist" id="artistInput">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control form-control-lg" placeholder="Link" id="linkInput">
-                        </div>
-                        <div class="form-group">
-                            <textarea class="form-control" rows="4" placeholder="Notes" id="notesInput"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control form-control-lg" placeholder="Media" id=" mediaInput">
-                        </div>      
-                            <input type="submit" value="Submit" class="btn btn-block" id="submitBtnSong">
-                    </form>
-                    `);
-
-            }
-            // <div class="form-group">
-            //                 <input type="text" rows="4" class="form-control form-control-lg" placeholder="Notes" id="notesInput">
-            //             </div>
-
-
-            function renderUpdateSongModal(info) {
-                $('#updateSongModalLabel').empty();
-                $('#updateSongModalLabel').append(`<h5 class="text-center text-danger">Update</h5>`);
-
-                $('#updateSongModalBody').empty();
-                $('#updateSongModalBody').append(`
-                    <form>
-                        <div class="form-group">
-                            <input type="text" class="form-control form-control-lg" placeholder="Song name (required)" id="songNameInput" value=${info.text}>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control form-control-lg" placeholder="Username (required)" id="userNameInput" value=${info.username}>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control form-control-lg" placeholder="Artist" id="artistInput" value=${info.artist}>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control form-control-lg" placeholder="Link" id="linkInput" value=${info.link}>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" rows="4" class="form-control form-control-lg" placeholder="Notes" id="notesInput" value=${info.notes}>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control form-control-lg" placeholder="Media" id=" mediaInput" value=${info.media}>
-                        </div>      
-                            <input type="submit" value="Submit" class="btn btn-block" id="submit-update-btn">
-                    </form>
-                    `);
-            }
-
-
-
+            // Click event that opens Modal to view song details.  
             $(document).on("click", ".detail-btn", function () {
                 var id = $(this).attr("_id")
                 console.log(id)
@@ -326,45 +195,41 @@
             })
 
 
+
+            //Click event that updates the song.  This button is within the Update Modal 
             $(document).on("click", ".update-btn", function () {
                 var id = $(this).attr("_id-update")
-                console.log(id)
-                // console.log(index)
+
                 console.log('/music/update/' + id)
                 $.get('/music/' + id).then((data) => {
+                    
                     renderUpdateSongModal(data)
                 })
 
                 $(document).on("click", "#submit-update-btn", () => {
-                    $.post('/music/update/'+id).then((data)=>{
+                    var updatedObj = {
+                    text: $('#songNameInput').val().trim(),
+                    username: $('#userNameInput').val().trim(),
+                    artist: $('#artistInput').val().trim(),
+                    link: $('#linkInput').val().trim(),
+                    notes: $('#notesInput').val().trim(),
+                    media: $('#mediaInput').val().trim()
+                }
+                    $.post('/music/update/' + id/updatedObj).then((data) => {
+                    
                         alert(data.text + " updated!")
                     })
                 })
 
 
-                // $.post('/music/update/' + (id)).then((data) => {
-                //     console.log(data)
-
-                //     $('.modal-title').empty()
-                //     $('.modal-body').empty()
-
-                //     $('.modal-title').html(data.text)
-
-                //     $('.detailsModalBody').addClass('text-muted')
-
-                //     $('.detailsModalBody').append(`Artist: ${data.artist} <br>
-                //                                         Username: ${data.username} <br>
-                //                                             Link: ${data.link} <br>
-                //                                                 Notes: ${data.notes} <br>
-                //                                                     Media: ${data.media}`)
-                // })
             })
 
+            //Click event that deletes a song.
             $(document).on('click', '.delete-btn', function () {
                 var id_delete = $(this).attr("_id-delete")
 
 
-                //delete? here we go again?
+                //THIS IS A DELETE?!?! .delete not recognized, used POST INSTEAD?
                 $.post('/music/delete/' + (id_delete)).then((data) => {
                     console.log('Deleted ' + data.text)
                     renderSongsToActivePage()
@@ -372,65 +237,162 @@
 
             })
 
-//Mark as Complete - Moves to archives section
+            //Mark as Complete - Moves to archives section
             $(document).on('click', '.complete-btn', function () {
                 var id_complete = $(this).attr("_id-complete")
-                    $.post('/music/complete/' + (id_complete)).then((data) => {
+                $.post('/music/complete/' + (id_complete)).then((data) => {
                     alert(data.text + " moved to Archive")
                     renderSongsToActivePage()
                 })
             })
 
 
-
+            //Start Modal to Add a New Song
             $(document).on("click touchstart", "#addSongIcon", function () {
                 renderAddNewSongModal()
             })
 
+            //Click event to add new song to DB.  Occurs within AddNewSongModal
             $(document).on('click', '#submitBtnSong', () => {
-                // alert('Yo')
                 event.preventDefault();
                 var newSongObj = {
                     text: $('#songNameInput').val().trim(),
                     username: $('#userNameInput').val().trim(),
                     artist: $('#artistInput').val().trim(),
                     link: $('#linkInput').val().trim(),
-                    notes: $('#notesInput').val().trim()
-                    // media: $('#mediaInput').val().trim()
+                    notes: $('#notesInput').val().trim(),
+                    media: $('#mediaInput').val().trim()
                 }
 
-                alert(newSongObj)
                 console.log(newSongObj)
 
                 $.post('/music', newSongObj).then((r) => {
                     alert(JSON.stringify(r.text) + " added!")
                     renderSongsToActivePage()
                 })
+
+                $('#addNewSongModal').modal('hide')
+
             })
 
 
+
+
+            // **************FUNCTION DECLARATIONS********************
+
+            // Function that gets all of the active songs from DB.  Rendered to /Active
+            function renderSongsToActivePage() {
+                $.get('/music').then((data) => {
+                    $('#active').empty()
+                    for (var i = 0; i < data.length; i++) {
+                        $('#active').append(`<div class = "card m-3 activeSong">` +
+                            '<h4 class= "display-4 card-header activeSong-header text-light">' + data[i].text + '</h4>' +
+                            '<div class= "card-body">' +
+                            '<h4 class= "card-text activeSong-text form-group"> Artist: ' + data[i].artist + '<br>' +
+                            'Username: ' + data[i].username + '<br>' +
+                            'Link: ' + data[i].link + '<br>' +
+                            'Notes: <br> <textarea readonly class="form-control">' + data[i].notes + '</textarea> <br>' +
+                            'Media: ' + data[i].media + '<br>' +
+                            'Completed: ' + data[i].completed + '</h4>' +
+                            `<button type="button" _id = ${data[i]._id} class=" detail-btn btn btn-primary bd-example-modal-lg m-3" data-toggle="modal" data-target="#detailsModal">` +
+                            'Details</button>' +
+                            `<button type="button" _id-update = ${data[i]._id} class=" update-btn btn btn-warning bd-example-modal-lg m-3" data-toggle="modal" data-target="#updateSongModal">` +
+                            'Update</button>' +
+                            `<button type="button" _id-delete = ${data[i]._id} class=" delete-btn btn btn-danger m-3">` +
+                            'Delete</button>' +
+                            `<button type="button" _id-complete = ${data[i]._id} class=" complete-btn btn btn-success m-3">` +
+                            'Mark as Complete</button>' +
+                            '</div>')
+                    }
+                })
+            }
+
+
+            // Function that opens Modal to add new songs    
+            function renderAddNewSongModal() {
+                $('#addNewSongModalLabel').empty();
+                $('#addNewSongModalLabel').append(`<h5 class="text center text-success">Enter New Song Idea</h5>`);
+
+                $('#addNewSongModalBody').empty();
+                $('#addNewSongModalBody').append(`
+                    <form>
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-lg" placeholder="Song name (required)" id="songNameInput">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-lg" placeholder="Username (required)" id="userNameInput">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-lg" placeholder="Artist" id="artistInput">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-lg" placeholder="Link" id="linkInput">
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" rows="4" placeholder="Notes" id="notesInput"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <input type="file" class="form-control form-control-lg" placeholder="Media" id="mediaInput">
+                        </div>      
+                            <input type="submit" value="Submit" class="btn btn-block" id="submitBtnSong">
+                    </form>
+                    `);
+
+            }
+
+
+            // Function that opens Modal to update the songs  
+            function renderUpdateSongModal(info) {
+                $('#updateSongModalLabel').empty();
+                $('#updateSongModalLabel').append(`<h5 class="text-center text-danger">Update</h5>`);
+
+                $('#updateSongModalBody').empty();
+                $('#updateSongModalBody').append(`
+                    <form>
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-lg" placeholder="Song name (required)" id="songNameInput" value=${info.text}>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-lg" placeholder="Username (required)" id="userNameInput" value=${info.username}>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-lg" placeholder="Artist" id="artistInput" value=${info.artist}>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-lg" placeholder="Link" id="linkInput" value=${info.link}>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" rows="4" class="form-control form-control-lg" placeholder="Notes" id="notesInput" value=${info.notes}>
+                        </div>
+                        <div class="form-group">
+                            <input type="file" class="form-control form-control-lg" placeholder="Media" id=" mediaInput" value=${info.media}>
+                        </div>      
+                            <input type="submit" value="Submit" class="btn btn-block" id="submit-update-btn">
+                    </form>
+                    `);
+            }
         })
 
 
 
+// <!-- kept for reference only
+//         //Init Scrollspy
+//         $('body').scrollspy({ target: "#main-nav" })
 
-        //Init Scrollspy
-        $('body').scrollspy({ target: "#main-nav" })
+//         //Smooth Scrolling
+//         $("#main-nav a").on('click', function (event) {
+//             if (this.hash !== "") {
+//                 event.preventDefault();
 
-        //Smooth Scrolling
-        $("#main-nav a").on('click', function (event) {
-            if (this.hash !== "") {
-                event.preventDefault();
+//                 const hash = this.hash;
 
-                const hash = this.hash;
-
-                $('html,body').animate({
-                    scrollTop: $(hash).offset().top
-                }, 800, function () {
-                    window.location.hash = hash;
-                });
-            }
-        });
+//                 $('html,body').animate({
+//                     scrollTop: $(hash).offset().top
+//                 }, 800, function () {
+//                     window.location.hash = hash;
+//                 });
+//             }
+//         }); -->
 
 
     </script>

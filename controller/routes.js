@@ -48,7 +48,7 @@ module.exports = function (app) {
         })
     })
 
-   
+
 
     app.post('/music/delete/:id', (req, res) => {
 
@@ -64,114 +64,91 @@ module.exports = function (app) {
     app.post('/music/complete/:id', (req, res) => {
 
         Music.findOneAndUpdate({ _id: req.params.id },
-            { $set:{ completed:true}}).then((result) => {
-            if (!result) {  
-                return res.status(404).send()
-            }
-            res.send({ result })
-        })
+            { $set: { completed: true } }).then((result) => {
+                if (!result) {
+                    return res.status(404).send()
+                }
+                res.send({ result })
+            })
     })
 
 
     app.post('/music/activate/:id', (req, res) => {
 
         Music.findOneAndUpdate({ _id: req.params.id },
-            { $set:{ completed:false}}).then((result) => {
-            if (!result) {  
+            { $set: { completed: false } }).then((result) => {
+                if (!result) {
+                    return res.status(404).send()
+                }
+                res.send({ result })
+            })
+    })
+
+
+    //--------------------------------------------------------------------
+    //THIS IS MEANT TO BE A PUT!!!!!!!!!!!!!!!!!!!!!!!!
+    //--------------------------------------------------------------------
+    app.post('/music/update/id/updated', (req, res) => {
+
+        Music.findOneAndUpdate({ _id: req.params.id },
+            {
+                $set: {
+                    text: req.body.text,
+                    username: req.body.username,
+                    artist: req.body.artist,
+                    link: req.body.link,
+                    notes: req.body.notes,
+                    media: req.body.media 
+                }
+            }
+        ).then((result) => {
+            if (!result) {
                 return res.status(404).send()
             }
             res.send({ result })
         })
     })
 
-    //  //--------------------------------------------------------------------
-    //     //THIS IS MEANT TO BE A PUT!!!!!!!!!!!!!!!!!!!!!!!!
-    //     //--------------------------------------------------------------------
-    //     app.post('/music/update/:id', function (req, res) {
-    //         db.scrape.update({ _id: req.params.id },
-    //             { $set: { notes: req.params.note } }).then(function (r) {
-    //                 res.send(r)
-    //             }).catch(function (e) {
-    //                 res.send(e)
-    //             })
+
+
+
+
+
+
+
+
+
+
+
+    // app.patch('/music/:id', (req, res) => {
+    //     var id = req.params.id;
+    //     var body = _.pick(req.body, ['text', 'completed']); //only takes these properties, not completedAt
+
+    //     //valid id?
+    //     if (!ObjectID.isValid(req.params.id)) {
+    //         return res.status(404).send()
+    //     }
+
+    //     //if boolean and completed = true
+    //     if ((_.isBoolean) && body.completed) {
+    //         body.completedAt = new Date().getTime();
+    //     }
+    //     else {
+    //         body.completed = false;
+    //         body.completedAt = null;
+    //     }
+
+    //     //actual update happens here
+    //     //1st arg - id, 2nd is body, 3rd is a parameter that says return new updated obj
+    //     Music.findByIdAndUpdate(id, { $set: body }, { new: true }).then((music) => {
+    //         if (!music) {
+    //             return res.status(404).send()
+    //         }
+    //         res.send({ music })
+    //     }).catch((e) => {
+    //         rest.statsus(400).send()
     //     })
 
-
-    //--------------------------------------------------------------------
-    //THIS IS MEANT TO BE A PUT!!!!!!!!!!!!!!!!!!!!!!!!
-    //--------------------------------------------------------------------
-    app.post('/music/update/:id', (req, res) => {
-
-
-        var music = new Music({
-            text: req.body.text,
-            username: req.body.username,
-            artist: req.body.artist,
-            link: req.body.link,
-            notes: req.body.notes,
-            media: req.body.media
-        })
-
-        Music.updateOne({ _id: req.params.id },
-            {
-                $set: {
-                    text: music.text,
-                    username: music.username,
-                    artist: music.artist,
-                    link: music.link,
-                    notes: music.notes,
-                    media: music.media 
-                    }
-            }, {new:true}
-        ).then((doc) => {
-            res.send(doc)
-        }, (e) => {
-            res.status(400).send()
-
-
-        })
-    })
-
-
-
-
-
-
-
-
-
-
-
-
-    app.patch('/music/:id', (req, res) => {
-        var id = req.params.id;
-        var body = _.pick(req.body, ['text', 'completed']); //only takes these properties, not completedAt
-
-        //valid id?
-        if (!ObjectID.isValid(req.params.id)) {
-            return res.status(404).send()
-        }
-
-        //if boolean and completed = true
-        if ((_.isBoolean) && body.completed) {
-            body.completedAt = new Date().getTime();
-        }
-        else {
-            body.completed = false;
-            body.completedAt = null;
-        }
-
-        //actual update happens here
-        //1st arg - id, 2nd is body, 3rd is a parameter that says return new updated obj
-        Music.findByIdAndUpdate(id, { $set: body }, { new: true }).then((music) => {
-            if (!music) {
-                return res.status(404).send()
-            }
-            res.send({ music })
-        }).catch((e) => {
-            rest.statsus(400).send()
-        })
-
-    });
+    // });
 
 }
