@@ -88,13 +88,13 @@ module.exports = function (app) {
     //--------------------------------------------------------------------
     //THIS IS MEANT TO BE A PUT!!!!!!!!!!!!!!!!!!!!!!!!
     //--------------------------------------------------------------------
-    app.post('/music/update/id/updated', (req, res) => {
-
+    app.post('/music/update/:id', (req, res) => {
+        console.log(req)
         Music.findOneAndUpdate({ _id: req.params.id },
             {
                 $set: {
                     text: req.body.text,
-                    username: req.body.username,
+                    username: "Updatated now",
                     artist: req.body.artist,
                     link: req.body.link,
                     notes: req.body.notes,

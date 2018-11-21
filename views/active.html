@@ -199,26 +199,32 @@
             //Click event that updates the song.  This button is within the Update Modal 
             $(document).on("click", ".update-btn", function () {
                 var id = $(this).attr("_id-update")
-
+                
                 console.log('/music/update/' + id)
                 $.get('/music/' + id).then((data) => {
-                    
+                   
                     renderUpdateSongModal(data)
                 })
-
+                
                 $(document).on("click", "#submit-update-btn", () => {
+                    event.preventDefault();
                     var updatedObj = {
                     text: $('#songNameInput').val().trim(),
                     username: $('#userNameInput').val().trim(),
                     artist: $('#artistInput').val().trim(),
                     link: $('#linkInput').val().trim(),
                     notes: $('#notesInput').val().trim(),
-                    media: $('#mediaInput').val().trim()
+                    media: $('#mediaInput').val()
                 }
-                    $.post('/music/update/' + id/updatedObj).then((data) => {
-                    
+                console.log(updatedObj);
+
+
+                    $.post('/music/update/'+ id, updatedObj).then((data) => {
                         alert(data.text + " updated!")
                     })
+
+
+                  
                 })
 
 

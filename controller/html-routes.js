@@ -12,14 +12,14 @@ var path = require("path");
 module.exports = function (app) {
     app.get("/", function (req, res) {
         res.sendFile(path.join(__dirname, '../views/index.html'));
-        
-    });
+     });
     app.get("/active", function (req, res) {
         res.sendFile(path.join(__dirname, '../views/active.html'));
-        
     });
     app.get("/archived", function (req, res) {
-        res.sendFile(path.join(__dirname, '../views/archived.html'));
-        
+        res.sendFile(path.join(__dirname, '../views/archived.html')); 
+    });
+    app.get("/about", function (req, res) {
+        res.sendFile(path.join(__dirname, '../views/partials/header.hbs')); 
     });
 };
