@@ -1,6 +1,8 @@
 var Music = require('../model/music');
 var _ = require('lodash')
 var mongoose = require('mongoose')
+const mx = require('musixmatchlyrics')
+
 
 
 module.exports = function (app) {
@@ -94,7 +96,7 @@ module.exports = function (app) {
             {
                 $set: {
                     text: req.body.text,
-                    username: "Updatated now",
+                    username: req.body.username,
                     artist: req.body.artist,
                     link: req.body.link,
                     notes: req.body.notes,
@@ -111,44 +113,26 @@ module.exports = function (app) {
 
 
 
-
-
-
-
-
-
-
-
-
-    // app.patch('/music/:id', (req, res) => {
-    //     var id = req.params.id;
-    //     var body = _.pick(req.body, ['text', 'completed']); //only takes these properties, not completedAt
-
-    //     //valid id?
-    //     if (!ObjectID.isValid(req.params.id)) {
-    //         return res.status(404).send()
-    //     }
-
-    //     //if boolean and completed = true
-    //     if ((_.isBoolean) && body.completed) {
-    //         body.completedAt = new Date().getTime();
-    //     }
-    //     else {
-    //         body.completed = false;
-    //         body.completedAt = null;
-    //     }
-
-    //     //actual update happens here
-    //     //1st arg - id, 2nd is body, 3rd is a parameter that says return new updated obj
-    //     Music.findByIdAndUpdate(id, { $set: body }, { new: true }).then((music) => {
-    //         if (!music) {
-    //             return res.status(404).send()
-    //         }
-    //         res.send({ music })
-    //     }).catch((e) => {
-    //         rest.statsus(400).send()
-    //     })
-
-    // });
+    app.get('/lyrics/:song', (req, res) => {
+        mx.search(req.params.song, song =>  {
+            if(song.length === 0) {
+                res.json("Empty")
+                console.log(song.length + 'none')
+            }
+            else{
+                console.log(song.length  + 'some')
+                
+            mx.get(song[0].url,lyric=>{
+                console.log(lyric)
+                res.json(lyric)
+            })
+        }
+            
+        }
+                , (e) => {
+            res.status(400).send()
+        })
+        
+    })
 
 }

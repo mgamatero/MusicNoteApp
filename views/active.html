@@ -167,7 +167,7 @@
 
         $(document).ready(function () {
             renderSongsToActivePage()
-   
+
 
             // Click event that opens Modal to view song details.  
             $(document).on("click", ".detail-btn", function () {
@@ -175,8 +175,9 @@
                 console.log(id)
                 // console.log(index)
                 console.log('/music/' + id)
+
                 $.get('/music/' + (id)).then((data) => {
-                    console.log(data)
+
 
                     $('.modal-title').empty()
                     $('.modal-body').empty()
@@ -189,42 +190,53 @@
                                                         Username: ${data.username} <br>
                                                             Link: <a href="${data.link}" target="_blank">${data.link}</a> <br>
                                                             Notes: <br>
-                                                                <textarea readonly class="form-control">${data.notes} </textarea><br>
-                                                                    Media: ${data.media}`)
+                                                                <textarea readonly class="form-control">${data.notes} </textarea><br>`)
+
+                    $.get('/lyrics/' + data.text).then((songLyrics) => {
+                        alert(songLyrics)
+                        if (songLyrics === "Empty" ){
+                            $('.detailsModalBody').append(`<h2 class="text-danger text-center">No Lyrics Found</h2>`)                         
+                    }
+                    else{
+                        $('.detailsModalBody').append(`<button class = "btn btn-lg btn-success btn-block" data-toggle="collapse" data-target="#lyrics">Click for Lyrics</button>
+                        <h5 class="lead collapse p-2 text-bold" id="lyrics">${songLyrics.length}${JSON.stringify(songLyrics[0].lyric)}</h5>`)
+                    }
+                    })
                 })
             })
+
 
 
 
             //Click event that updates the song.  This button is within the Update Modal 
             $(document).on("click", ".update-btn", function () {
                 var id = $(this).attr("_id-update")
-                
+
                 console.log('/music/update/' + id)
                 $.get('/music/' + id).then((data) => {
-                   
+
                     renderUpdateSongModal(data)
                 })
-                
+
                 $(document).on("click", "#submit-update-btn", () => {
                     event.preventDefault();
                     var updatedObj = {
-                    text: $('#songNameInput').val().trim(),
-                    username: $('#userNameInput').val().trim(),
-                    artist: $('#artistInput').val().trim(),
-                    link: $('#linkInput').val().trim(),
-                    notes: $('#notesInput').val().trim(),
-                    media: $('#mediaInput').val()
-                }
-                console.log(updatedObj);
+                        text: $('#songNameInput').val().trim(),
+                        username: $('#userNameInput').val().trim(),
+                        artist: $('#artistInput').val().trim(),
+                        link: $('#linkInput').val().trim(),
+                        notes: $('#notesInput').val().trim()
+                        
+                    }
+                    console.log(updatedObj);
 
 
-                    $.post('/music/update/'+ id, updatedObj).then((data) => {
+                    $.post('/music/update/' + id, updatedObj).then((data) => {
                         alert(data.text + " updated!")
                     })
 
 
-                  
+
                 })
 
 
@@ -266,8 +278,8 @@
                     username: $('#userNameInput').val().trim(),
                     artist: $('#artistInput').val().trim(),
                     link: $('#linkInput').val().trim(),
-                    notes: $('#notesInput').val().trim(),
-                    media: $('#mediaInput').val().trim()
+                    notes: $('#notesInput').val().trim()
+                    
                 }
 
                 console.log(newSongObj)
@@ -298,7 +310,7 @@
                             'Username: ' + data[i].username + '<br>' +
                             'Link: ' + data[i].link + '<br>' +
                             'Notes: <br> <textarea readonly class="form-control">' + data[i].notes + '</textarea> <br>' +
-                            'Media: ' + data[i].media + '<br>' +
+                            
                             'Completed: ' + data[i].completed + '</h4>' +
                             `<button type="button" _id = ${data[i]._id} class=" detail-btn btn btn-primary bd-example-modal-lg m-3" data-toggle="modal" data-target="#detailsModal">` +
                             'Details</button>' +
@@ -337,9 +349,7 @@
                         <div class="form-group">
                             <textarea class="form-control" rows="4" placeholder="Notes" id="notesInput"></textarea>
                         </div>
-                        <div class="form-group">
-                            <input type="file" class="form-control form-control-lg" placeholder="Media" id="mediaInput">
-                        </div>      
+                          
                             <input type="submit" value="Submit" class="btn btn-block" id="submitBtnSong">
                     </form>
                     `);
@@ -370,9 +380,7 @@
                         <div class="form-group">
                             <input type="text" rows="4" class="form-control form-control-lg" placeholder="Notes" id="notesInput" value=${info.notes}>
                         </div>
-                        <div class="form-group">
-                            <input type="file" class="form-control form-control-lg" placeholder="Media" id=" mediaInput" value=${info.media}>
-                        </div>      
+                            
                             <input type="submit" value="Submit" class="btn btn-block" id="submit-update-btn">
                     </form>
                     `);

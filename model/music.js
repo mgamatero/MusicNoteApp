@@ -30,13 +30,7 @@ var Music = new Schema ({
         required: false,
         trim:true,
         default: "No Notes"
-    },
-       media: {  //gridFs in the future?
-        type: Buffer,
-        required: false,
-        trim:true,
-        default: "No Audio File"
-    },
+    },   
     completed: {
         type: Boolean,
         default: false
