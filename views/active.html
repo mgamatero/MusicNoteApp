@@ -110,18 +110,43 @@
     </div>
 
 
+       <!-- Song Detail Modal -->
+       <div class="modal modal-fluid fade" id="detailsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+       aria-hidden="true">
+       <div class="modal-dialog">
+           <div class="modal-content">
+               <div class="modal-header">
+                   <h5 class="modal-title display-4" id="detailsModalHeader"></h5>
+                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                       <span aria-hidden="true">&times;</span>
+                   </button>
+               </div>
+               <div class="modal-body detailsModalBody text-left">
+                   <!-- Song Details go here -->
+
+               </div>
+               <div class="modal-footer">
+                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+               </div>
+           </div>
+       </div>
+   </div>
+
+
+
+
     <!-- Update Song Modal -->
     <div class="modal modal-fluid fade" id="updateSongModal" tabindex="-1" role="dialog" aria-labelledby="updateSongModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="updateSongModalLabel"></h5>
+                    <h5 class="modal-title display-4" id="updateSongModalLabel"></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body" id="updateSongModalBody">
+                <div class="modal-body text-left" id="updateSongModalBody">
                     <!-- Update Song Form goes here -->
 
                 </div>
@@ -133,26 +158,7 @@
     </div>
 
 
-    <!-- Song Detail Modal -->
-    <div class="modal modal-fluid fade" id="detailsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title display-4" id="detailsModalHeader"></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body detailsModalBody text-left">
-                    <!-- Song Details go here -->
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
+ 
 
     <!-- jQuery minified.  From code.jquery.com, not the Bootstrap site!! -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
@@ -182,7 +188,7 @@
                     $('.modal-title').empty()
                     $('.modal-body').empty()
 
-                    
+
                     $('.modal-title').html(data.text)
 
                     $('.detailsModalBody').addClass('text-muted')
@@ -191,31 +197,14 @@
                                                         Username: ${data.username} <br>
                                                             Link: <a href="${data.link}" target="_blank">${data.link}</a> <br>
                                                             Notes: <br>
-                                                                <textarea readonly class="form-control">${data.notes} </textarea><br>`)
-
-                    // $.get('/lyrics/' + data.text).then((songLyrics) => {
-                    //     alert(songLyrics)
-                    //     if (songLyrics === "Empty" ){
-                    //         $('.detailsModalBody').append(`<h2 class="text-danger text-center">No Lyrics Found</h2>`)                         
-                    // }
-                    // else{
-                    //     $('.detailsModalBody').append(`<button class = "btn btn-lg btn-success btn-block" data-toggle="collapse" data-target="#lyrics">Click for Lyrics</button>
-                    //     <h5 class="lead collapse p-2 text-bold" id="lyrics">${songLyrics.length}${JSON.stringify(songLyrics[0].lyric)}</h5>`)
-                    // }
-                    // })
-                    $.get('/lyrics/' + data.artist + '/' +data.text).then((songLyrics) => {
-                    //     alert(songLyrics)
-                    //     if (songLyrics === "Empty" ){
-                    //         $('.detailsModalBody').append(`<h2 class="text-danger text-center">No Lyrics Found</h2>`)                         
-                    // }
-                    // else{
+                                                            <textarea readonly class="form-control">${data.notes} </textarea><br>`)
+                    //Add lyrics from npm
+                    $.get('/lyrics/' + data.artist + '/' + data.text).then((songLyrics) => {
                         $('.detailsModalBody').append(`<button class = "btn btn-lg btn-success btn-block" data-toggle="collapse" data-target="#lyrics">Click for Lyrics</button>
                         <h5 class="lead collapse p-2 text-bold" id="lyrics">${songLyrics}</h5>`)
-                    // }
                     })
                 })
             })
-
 
 
 
@@ -225,21 +214,19 @@
 
                 console.log('/music/update/' + id)
                 $.get('/music/' + id).then((data) => {
-
                     renderUpdateSongModal(data)
                 })
 
                 $(document).on("click", "#submit-update-btn", () => {
                     event.preventDefault();
                     var updatedObj = {
-                        text: $('#songNameInput').val().trim(),
-                        username: $('#userNameInput').val().trim(),
-                        artist: $('#artistInput').val().trim(),
-                        link: $('#linkInput').val().trim(),
-                        notes: $('#notesInput').val().trim()
-                        
+                        text: $('#songNameInput').val(),
+                        username: $('#userNameInput').val(),
+                        artist: $('#artistInput').val(),
+                        link: $('#linkInput').val(),
+                        notes: $('#notesInput').val()
                     }
-                    console.log(updatedObj);
+                    console.log("Obj to update - " + updatedObj);
 
 
                     $.post('/music/update/' + id, updatedObj).then((data) => {
@@ -247,7 +234,7 @@
                         renderSongsToActivePage()
                     })
 
-$('#updateSongModal').modal('hide')
+                    $('#updateSongModal').modal('hide')
 
                 })
 
@@ -291,18 +278,14 @@ $('#updateSongModal').modal('hide')
                     artist: $('#artistInput').val().trim(),
                     link: $('#linkInput').val().trim(),
                     notes: $('#notesInput').val().trim()
-                    
                 }
 
-                console.log(newSongObj)
-
+                
                 $.post('/music', newSongObj).then((r) => {
                     alert(JSON.stringify(r.text) + " added!")
                     renderSongsToActivePage()
                 })
-
                 $('#addNewSongModal').modal('hide')
-
             })
 
 
@@ -321,7 +304,7 @@ $('#updateSongModal').modal('hide')
                             '<h4 class= "card-text activeSong-text form-group"> Username: ' + data[i].username + '<br>' +
                             'Link: <small>' + data[i].link + '</small><br>' +
                             'Notes: <br> <textarea readonly class="form-control">' + data[i].notes + '</textarea> <br>' +
-                            
+
                             'Completed: ' + data[i].completed + '</h4>' +
                             `<button type="button" _id = ${data[i]._id} class=" detail-btn btn btn-primary bd-example-modal-lg m-3" data-toggle="modal" data-target="#detailsModal">` +
                             'Details</button>' +
@@ -340,7 +323,7 @@ $('#updateSongModal').modal('hide')
             // Function that opens Modal to add new songs    
             function renderAddNewSongModal() {
                 $('#addNewSongModalLabel').empty();
-                $('#addNewSongModalLabel').append(`<h5 class="text center text-success">Enter New Song Idea</h5>`);
+                $('#addNewSongModalLabel').append(`Enter New Song Idea`);
 
                 $('#addNewSongModalBody').empty();
                 $('#addNewSongModalBody').append(`
@@ -349,10 +332,10 @@ $('#updateSongModal').modal('hide')
                             <input type="text" class="form-control form-control-lg" placeholder="Song name (required)" id="songNameInput">
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control form-control-lg" placeholder="Username (required)" id="userNameInput">
+                            <input type="text" class="form-control form-control-lg" placeholder="Artist" id="artistInput">
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control form-control-lg" placeholder="Artist" id="artistInput">
+                            <input type="text" class="form-control form-control-lg" placeholder="Username (required)" id="userNameInput">
                         </div>
                         <div class="form-group">
                             <input type="text" class="form-control form-control-lg" placeholder="Link" id="linkInput">
@@ -371,25 +354,25 @@ $('#updateSongModal').modal('hide')
             // Function that opens Modal to update the songs  
             function renderUpdateSongModal(info) {
                 $('#updateSongModalLabel').empty();
-                $('#updateSongModalLabel').append(`<h5 class="text-center text-danger">Update</h5>`);
+                $('#updateSongModalLabel').append(`Update`);
 
                 $('#updateSongModalBody').empty();
                 $('#updateSongModalBody').append(`
                     <form>
                         <div class="form-group">
-                            <input type="text" class="form-control form-control-lg" placeholder="Song name (required)" id="songNameInput" value=${info.text}>
+                            <input type="text" class="form-control form-control-lg" placeholder="Song name (required)" id="songNameUpdate" value=${info.text}>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control form-control-lg" placeholder="Username (required)" id="userNameInput" value=${info.username}>
+                            <input type="text" class="form-control form-control-lg" placeholder="Username (required)" id="userNameUpdate" value=${info.username}>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control form-control-lg" placeholder="Artist" id="artistInput" value=${info.artist}>
+                            <input type="text" class="form-control form-control-lg" placeholder="Artist" id="artisUpdatet" value=${info.artist}>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control form-control-lg" placeholder="Link" id="linkInput" value=${info.link}>
+                            <input type="text" class="form-control form-control-lg" placeholder="Link" id="linkUpdate" value=${info.link}>
                         </div>
                         <div class="form-group">
-                            <input type="text" rows="4" class="form-control form-control-lg" placeholder="Notes" id="notesInput" value=${info.notes}>
+                            <textarea rows="4" class="form-control form-control-lg" placeholder="Notes" id="notesUpdate" value=${info.notes}></textarea>
                         </div>
                             
                             <input type="submit" value="Submit" class="btn btn-block btn-warning" id="submit-update-btn">

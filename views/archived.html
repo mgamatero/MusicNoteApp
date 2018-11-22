@@ -50,7 +50,7 @@
 
 
 
-    <!-- ARCHIVED SECTION -->
+    <!-- ARCHIVED HEADER -->
     <section id="archived-header" class="bg-light text-muted pt-5 pb-2">
         <div class="container">
             <div class="row">
@@ -85,7 +85,7 @@
     </footer>
 
 
-    <!-- Song Detail Modal -->
+    <!-- Archived Song Detail Modal -->
     <div class="modal bd-example-modal-fluid fade" id="archivedModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog">
@@ -145,15 +145,20 @@
                 })
             }
 
-
+       
+            // Click event that opens Modal to view song details.  
             $(document).on("click", ".detail-btn", function () {
-                var id = $(this).attr("_id")               
+                var id = $(this).attr("_id")
+                console.log(id)
+                // console.log(index)
                 console.log('/music/' + id)
+
                 $.get('/music/' + (id)).then((data) => {
-                    console.log(data)
+
 
                     $('.modal-title').empty()
                     $('.modal-body').empty()
+
 
                     $('.modal-title').html(data.text)
 
@@ -163,8 +168,12 @@
                                                         Username: ${data.username} <br>
                                                             Link: <a href="${data.link}" target="_blank">${data.link}</a> <br>
                                                             Notes: <br>
-                                                                <textarea readonly class="form-control">${data.notes} </textarea><br>
-                                                                    Media: ${data.media}`)
+                                                            <textarea readonly class="form-control">${data.notes} </textarea><br>`)
+                    //Add lyrics from npm
+                    $.get('/lyrics/' + data.artist + '/' + data.text).then((songLyrics) => {
+                        $('.archivedModalBody').append(`<button class = "btn btn-lg btn-success btn-block" data-toggle="collapse" data-target="#lyrics">Click for Lyrics</button>
+                        <h5 class="lead collapse p-2 text-bold" id="lyrics">${songLyrics}</h5>`)
+                    })
                 })
             })
 
@@ -188,23 +197,24 @@
 
 
 
-        //Init Scrollspy
-        $('body').scrollspy({ target: "#main-nav" })
+    //    Not used, keep for reference only
+       // //Init Scrollspy
+        // $('body').scrollspy({ target: "#main-nav" })
 
-        //Smooth Scrolling
-        $("#main-nav a").on('click', function (event) {
-            if (this.hash !== "") {
-                event.preventDefault();
+        // //Smooth Scrolling
+        // $("#main-nav a").on('click', function (event) {
+        //     if (this.hash !== "") {
+        //         event.preventDefault();
 
-                const hash = this.hash;
+        //         const hash = this.hash;
 
-                $('html,body').animate({
-                    scrollTop: $(hash).offset().top
-                }, 800, function () {
-                    window.location.hash = hash;
-                });
-            }
-        });
+        //         $('html,body').animate({
+        //             scrollTop: $(hash).offset().top
+        //         }, 800, function () {
+        //             window.location.hash = hash;
+        //         });
+        //     }
+        // });
 
 
     </script>
