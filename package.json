@@ -9,6 +9,7 @@
     "express-hbs": "^1.0.4",
     "handlebars": "^4.0.12",
     "lodash": "^4.17.11",
+    "lyrics-fetcher": "^1.0.2",
     "mongoose": "^5.3.8",
     "musixmatchlyrics": "0.0.1",
     "node-lyrics": "^1.0.0",

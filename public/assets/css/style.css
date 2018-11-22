@@ -115,3 +115,11 @@ body{
 .modal-dialog{
   max-width: 85%;
 }
+
+#lyrics{
+  white-space: pre-wrap;
+}
+
+textarea{
+      white-space: pre-wrap;
+  }

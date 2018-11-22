@@ -1,13 +1,12 @@
 
 var express = require('express')
 var bodyParser = require('body-parser')
-var lyrics = require('node-lyrics')
+// var lyrics = require('node-lyrics')
+var lyr = require('lyrics-fetcher')
 
-// const mx = require('musixmatchlyrics')
- 
-// mx.autocomplete('Rolling in the Deep', songs =>  {
-//     console.log(songs[0].url)
-// })
+
+
+
 
 var { mongoose } = require('./db/mongoose')
 var { Music } = require('../model/music')

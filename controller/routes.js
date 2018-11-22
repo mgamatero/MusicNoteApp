@@ -1,7 +1,9 @@
 var Music = require('../model/music');
 var _ = require('lodash')
 var mongoose = require('mongoose')
-const mx = require('musixmatchlyrics')
+// const mx = require('musixmatchlyrics')
+var lyr = require('lyrics-fetcher')
+
 
 
 
@@ -113,25 +115,29 @@ module.exports = function (app) {
 
 
 
-    app.get('/lyrics/:song', (req, res) => {
-        mx.search(req.params.song, song =>  {
-            if(song.length === 0) {
-                res.json("Empty")
-                console.log(song.length + 'none')
-            }
-            else{
-                console.log(song.length  + 'some')
+    app.get('/lyrics/:artist/:song', (req, res) => {
+        lyr.fetch(req.params.artist, req.params.song, function (err, lyrics) {
+            console.log(err || lyrics);
+            res.send(err || lyrics)
+        });
+        // mx.search(req.params.song, song =>  {
+        //     if(song.length === 0) {
+        //         res.json("Empty")
+        //         console.log(song.length + 'none')
+        //     }
+        //     else{
+        //         console.log(song.length  + 'some')
                 
-            mx.get(song[0].url,lyric=>{
-                console.log(lyric)
-                res.json(lyric)
-            })
-        }
+        //     mx.get(song[0].url,lyric=>{
+        //         console.log(lyric)
+        //         res.json(lyric)
+        //     })
+        // }
             
-        }
-                , (e) => {
-            res.status(400).send()
-        })
+        // }
+        //         , (e) => {
+        //     res.status(400).send()
+        // })
         
     })
 

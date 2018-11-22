@@ -193,15 +193,25 @@
                                                             Notes: <br>
                                                                 <textarea readonly class="form-control">${data.notes} </textarea><br>`)
 
-                    $.get('/lyrics/' + data.text).then((songLyrics) => {
-                        alert(songLyrics)
-                        if (songLyrics === "Empty" ){
-                            $('.detailsModalBody').append(`<h2 class="text-danger text-center">No Lyrics Found</h2>`)                         
-                    }
-                    else{
+                    // $.get('/lyrics/' + data.text).then((songLyrics) => {
+                    //     alert(songLyrics)
+                    //     if (songLyrics === "Empty" ){
+                    //         $('.detailsModalBody').append(`<h2 class="text-danger text-center">No Lyrics Found</h2>`)                         
+                    // }
+                    // else{
+                    //     $('.detailsModalBody').append(`<button class = "btn btn-lg btn-success btn-block" data-toggle="collapse" data-target="#lyrics">Click for Lyrics</button>
+                    //     <h5 class="lead collapse p-2 text-bold" id="lyrics">${songLyrics.length}${JSON.stringify(songLyrics[0].lyric)}</h5>`)
+                    // }
+                    // })
+                    $.get('/lyrics/' + data.artist + '/' +data.text).then((songLyrics) => {
+                    //     alert(songLyrics)
+                    //     if (songLyrics === "Empty" ){
+                    //         $('.detailsModalBody').append(`<h2 class="text-danger text-center">No Lyrics Found</h2>`)                         
+                    // }
+                    // else{
                         $('.detailsModalBody').append(`<button class = "btn btn-lg btn-success btn-block" data-toggle="collapse" data-target="#lyrics">Click for Lyrics</button>
-                        <h5 class="lead collapse p-2 text-bold" id="lyrics">${songLyrics.length}${JSON.stringify(songLyrics[0].lyric)}</h5>`)
-                    }
+                        <h5 class="lead collapse p-2 text-bold" id="lyrics">${songLyrics}</h5>`)
+                    // }
                     })
                 })
             })
