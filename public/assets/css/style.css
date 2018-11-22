@@ -106,8 +106,10 @@ body{
   font-stretch: expanded;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-size: 2rem;
-  max-width: 100%;
-  margin: auto;
+  /* max-width: 80%; */
+  word-wrap: break-word;
+  
+  /* margin: auto; */
 }
 
 .modal-dialog{
