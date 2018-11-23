@@ -4,18 +4,18 @@ var Schema = mongoose.Schema
 var Music = new Schema ({
     text: {
         type: String,
-        required: true,
-        minlength: 1,
+        // required: true,
+        // minlength: 1,
         trim:true
     },
     username: {
         type: String,
-        minlength: 1,
+        // minlength: 1,
         trim:true
     },
     artist: {
         type: String,
-        required: false,
+        // required: false,
         trim:true,
         default: "Unknown artist"
   },

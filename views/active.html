@@ -73,6 +73,7 @@
     </section>
 
 
+
     <!-- FOOTER -->
     <footer id="main-footer" class="bg-dark">
         <div class="containter">
@@ -110,27 +111,27 @@
     </div>
 
 
-       <!-- Song Detail Modal -->
-       <div class="modal modal-fluid fade" id="detailsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-       aria-hidden="true">
-       <div class="modal-dialog">
-           <div class="modal-content">
-               <div class="modal-header">
-                   <h5 class="modal-title display-4" id="detailsModalHeader"></h5>
-                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                       <span aria-hidden="true">&times;</span>
-                   </button>
-               </div>
-               <div class="modal-body detailsModalBody text-left">
-                   <!-- Song Details go here -->
+    <!-- Song Detail Modal -->
+    <div class="modal modal-fluid fade" id="detailsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title display-4" id="detailsModalHeader"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body detailsModalBody text-left">
+                    <!-- Song Details go here -->
 
-               </div>
-               <div class="modal-footer">
-                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-               </div>
-           </div>
-       </div>
-   </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 
@@ -158,7 +159,7 @@
     </div>
 
 
- 
+
 
     <!-- jQuery minified.  From code.jquery.com, not the Bootstrap site!! -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
@@ -195,7 +196,7 @@
 
                     $('.detailsModalBody').append(`Artist: ${data.artist} <br>
                                                         Username: ${data.username} <br>
-                                                            Link: <a href="${data.link}" target="_blank">${data.link}</a> <br>
+                                                            Link: <a href=${data.link} target="_blank">${data.link}</a> <br>
                                                             Notes: <br>
                                                             <textarea readonly class="form-control">${data.notes} </textarea><br>`)
                     //Add lyrics from npm
@@ -220,20 +221,18 @@
                 $(document).on("click", "#submit-update-btn", () => {
                     event.preventDefault();
                     var updatedObj = {
-                        text: $('#songNameInput').val(),
-                        username: $('#userNameInput').val(),
-                        artist: $('#artistInput').val(),
-                        link: $('#linkInput').val(),
-                        notes: $('#notesInput').val()
+                        text: $('#songNameUpdate').val().trim(),
+                        username: $('#userNameUpdate').val().trim(),
+                        artist: $('#artistUpdate').val().trim(),
+                        link: $('#linkUpdate').val().trim(),
+                        notes: $('#notesUpdate').val().trim()
                     }
-                    console.log("Obj to update - " + updatedObj);
-
+                    console.log("Obj to update - " + JSON.stringify(updatedObj));
 
                     $.post('/music/update/' + id, updatedObj).then((data) => {
                         alert(data.text + " updated!")
                         renderSongsToActivePage()
                     })
-
                     $('#updateSongModal').modal('hide')
 
                 })
@@ -280,7 +279,7 @@
                     notes: $('#notesInput').val().trim()
                 }
 
-                
+
                 $.post('/music', newSongObj).then((r) => {
                     alert(JSON.stringify(r.text) + " added!")
                     renderSongsToActivePage()
@@ -329,13 +328,13 @@
                 $('#addNewSongModalBody').append(`
                     <form>
                         <div class="form-group">
-                            <input type="text" class="form-control form-control-lg" placeholder="Song name (required)" id="songNameInput">
+                            <input type="text" class="form-control form-control-lg" placeholder="Song name (required)" id="songNameInput" required>
                         </div>
                         <div class="form-group">
                             <input type="text" class="form-control form-control-lg" placeholder="Artist" id="artistInput">
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control form-control-lg" placeholder="Username (required)" id="userNameInput">
+                            <input type="text" class="form-control form-control-lg" placeholder="Username (required)" id="userNameInput" required>
                         </div>
                         <div class="form-group">
                             <input type="text" class="form-control form-control-lg" placeholder="Link" id="linkInput">
@@ -343,7 +342,6 @@
                         <div class="form-group">
                             <textarea class="form-control" rows="4" placeholder="Notes" id="notesInput"></textarea>
                         </div>
-                          
                             <input type="submit" value="Submit" class="btn btn-block" id="submitBtnSong">
                     </form>
                     `);
@@ -360,21 +358,25 @@
                 $('#updateSongModalBody').append(`
                     <form>
                         <div class="form-group">
-                            <input type="text" class="form-control form-control-lg" placeholder="Song name (required)" id="songNameUpdate" value=${info.text}>
+                            <label for="songNameUpdate" class="text-muted">Song: </label>
+                            <input type="text" class="form-control form-control-lg" placeholder="-- (required)" id="songNameUpdate" value="${info.text}">
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control form-control-lg" placeholder="Username (required)" id="userNameUpdate" value=${info.username}>
+                            <label for="artistUpdate" class="text-muted">Artist: </label>
+                            <input type="text" class="form-control form-control-lg" placeholder="--" id="artistUpdate" value="${info.artist}">
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control form-control-lg" placeholder="Artist" id="artisUpdatet" value=${info.artist}>
+                            <label for="userNameUpdate" class="text-muted">Username: </label>
+                            <input type="text" class="form-control form-control-lg" placeholder="-- (required)" id="userNameUpdate" value="${info.username}">
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control form-control-lg" placeholder="Link" id="linkUpdate" value=${info.link}>
+                            <label for="linkUpdate" class="text-muted">Link: </label>
+                            <input type="text" class="form-control form-control-lg" placeholder="--" id="linkUpdate" value="${info.link}">
                         </div>
                         <div class="form-group">
-                            <textarea rows="4" class="form-control form-control-lg" placeholder="Notes" id="notesUpdate" value=${info.notes}></textarea>
+                            <label for="notesUpdate" class="text-muted">Artist: </label>
+                            <textarea class="form-control" rows="4" placeholder="--" id="notesUpdate"> ${info.notes}</textarea>
                         </div>
-                            
                             <input type="submit" value="Submit" class="btn btn-block btn-warning" id="submit-update-btn">
                     </form>
                     `);
