@@ -36,10 +36,7 @@
                         <!-- <a href="#create-head-section" class="nav-link">Create</a> -->
                         <a href="/archived" class="nav-link">Archived</a>
                     </li>
-                    <li class="nav-item">
-                        <!-- <a href="#share-head-section" class="nav-link">Share</a> -->
-                        <a href="#share-head-section" class="nav-link">Share</a>
-                    </li>
+                    
                 </ul>
             </div>
         </div>
@@ -345,8 +342,8 @@
                             <input type="submit" value="Submit" class="btn btn-block" id="submitBtnSong">
                     </form>
                     `);
-
             }
+
 
 
             // Function that opens Modal to update the songs  
@@ -383,7 +380,8 @@
             }
         })
 
-
+// Get the current year for the copyright
+        $('#year').text(new Date().getFullYear())
 
 // <!-- kept for reference only
 //         //Init Scrollspy
