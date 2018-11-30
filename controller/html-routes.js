@@ -19,6 +19,9 @@ module.exports = function (app) {
     app.get("/archived", function (req, res) {
         res.sendFile(path.join(__dirname, '../views/archived.html')); 
     });
+    app.get("/about", function (req, res) {
+        res.sendFile(path.join(__dirname, '../views/about.html')); 
+    });
     // app.get("/about", function (req, res) {
     //     res.sendFile(path.join(__dirname, '../views/partials/header.hbs')); 
     // });

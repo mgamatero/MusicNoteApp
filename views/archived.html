@@ -29,14 +29,14 @@
                         <a href="/" class="nav-link">Home</a>
                     </li>
                     <li class="nav-item">
-                        <!-- <a href="#explore-head-section" class="nav-link">Explore</a> -->
                         <a href="/active" class="nav-link">Active</a>
                     </li>
                     <li class="nav-item">
-                        <!-- <a href="#create-head-section" class="nav-link">Create</a> -->
                         <a href="/archived" class="nav-link">Archived</a>
                     </li>
-                    
+                    <li class="nav-item">
+                        <a href="/about" class="nav-link">About</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -142,7 +142,7 @@
                 })
             }
 
-       
+
             // Click event that opens Modal to view song details.  
             $(document).on("click", ".detail-btn", function () {
                 var id = $(this).attr("_id")
@@ -184,8 +184,8 @@
             })
         })
 
-// Get the current year for the copyright
-$('#year').text(new Date().getFullYear())
+        // Get the current year for the copyright
+        $('#year').text(new Date().getFullYear())
 
 
     //    Not used, keep for reference only

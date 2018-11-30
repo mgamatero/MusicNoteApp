@@ -9,7 +9,7 @@ body{
   opacity:0.8;
 }
 
-#home-section{
+#home-section {
   background: url("../img/homemic.jpg");
   background-repeat:no-repeat;
   background-size:cover;
@@ -59,7 +59,7 @@ body{
 #main-footer {
   border-top:#008ed6 3px solid;
   opacity:0.8;
-}
+ }
 
 
 #active-section{
