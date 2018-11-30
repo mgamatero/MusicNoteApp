@@ -174,21 +174,14 @@
                 })
             })
 
-
-
-
-            //Mark as Complete - Moves back to active section
+            //Click event that marks song as Complete - Moves back to active section
             $(document).on('click', '.backToActive-btn', function () {
                 var id_active = $(this).attr("_id-backToActive")
                 $.post('/music/activate/' + (id_active)).then((data) => {
-                    alert(data.text + " moved to Active")
+                    alert("Song marked as Active.  Please look in Active section to view and update song details")
                     renderSongsToArchivedPage()
                 })
             })
-
-
-
-
         })
 
 // Get the current year for the copyright

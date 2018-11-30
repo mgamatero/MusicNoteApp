@@ -36,7 +36,7 @@
                         <!-- <a href="#create-head-section" class="nav-link">Create</a> -->
                         <a href="/archived" class="nav-link">Archived</a>
                     </li>
-                    
+
                 </ul>
             </div>
         </div>
@@ -157,7 +157,6 @@
 
 
 
-
     <!-- jQuery minified.  From code.jquery.com, not the Bootstrap site!! -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
@@ -170,18 +169,17 @@
     <script>
 
         $(document).ready(function () {
+            //load all songs from db to active id 
             renderSongsToActivePage()
 
 
             // Click event that opens Modal to view song details.  
             $(document).on("click", ".detail-btn", function () {
                 var id = $(this).attr("_id")
-                console.log(id)
-                // console.log(index)
-                console.log('/music/' + id)
+                // console.log(id)
+                // console.log('/music/' + id)
 
                 $.get('/music/' + (id)).then((data) => {
-
 
                     $('.modal-title').empty()
                     $('.modal-body').empty()
@@ -227,7 +225,7 @@
                     console.log("Obj to update - " + JSON.stringify(updatedObj));
 
                     $.post('/music/update/' + id, updatedObj).then((data) => {
-                        alert(data.text + " updated!")
+                        alert("Song updated!")
                         renderSongsToActivePage()
                     })
                     $('#updateSongModal').modal('hide')
@@ -244,7 +242,7 @@
 
                 //THIS IS A DELETE?!?! .delete not recognized, used POST INSTEAD?
                 $.post('/music/delete/' + (id_delete)).then((data) => {
-                    console.log('Deleted ' + data.text)
+                    alert("Song deleted!")
                     renderSongsToActivePage()
                 })
 
@@ -254,7 +252,7 @@
             $(document).on('click', '.complete-btn', function () {
                 var id_complete = $(this).attr("_id-complete")
                 $.post('/music/complete/' + (id_complete)).then((data) => {
-                    alert(data.text + " moved to Archive")
+                    alert("Song marked as completed.  Please look in Archived section to view song details")
                     renderSongsToActivePage()
                 })
             })
@@ -278,13 +276,11 @@
 
 
                 $.post('/music', newSongObj).then((r) => {
-                    alert(JSON.stringify(r.text) + " added!")
+                    alert(JSON.stringify(r.text) + " added to Active songs!")
                     renderSongsToActivePage()
                 })
                 $('#addNewSongModal').modal('hide')
             })
-
-
 
 
             // **************FUNCTION DECLARATIONS********************
@@ -371,7 +367,7 @@
                             <input type="text" class="form-control form-control-lg" placeholder="--" id="linkUpdate" value="${info.link}">
                         </div>
                         <div class="form-group">
-                            <label for="notesUpdate" class="text-muted">Artist: </label>
+                            <label for="notesUpdate" class="text-muted">Notes: </label>
                             <textarea class="form-control" rows="4" placeholder="--" id="notesUpdate"> ${info.notes}</textarea>
                         </div>
                             <input type="submit" value="Submit" class="btn btn-block btn-warning" id="submit-update-btn">
@@ -380,7 +376,7 @@
             }
         })
 
-// Get the current year for the copyright
+        // Get the current year for the copyright
         $('#year').text(new Date().getFullYear())
 
 // <!-- kept for reference only
