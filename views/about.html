@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- font-awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+    <title>Music Note App</title>
+</head>
+
+<body data-spy="scroll" data-target="#main-nav" id="home">
+
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top" id="main-nav">
+        <div class="container">
+
+            <a href="/" class="navbar-brand">Music Note App</a>
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a href="/" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <!-- <a href="#explore-head-section" class="nav-link">Explore</a> -->
+                        <a href="/active" class="nav-link">Active</a>
+                    </li>
+                    <li class="nav-item">
+                        <!-- <a href="#create-head-section" class="nav-link">Create</a> -->
+                        <a href="/archived" class="nav-link">Archived</a>
+                    </li>
+                    <li class="nav-item">
+                        <!-- <a href="#create-head-section" class="nav-link">Create</a> -->
+                        <a href="/about" class="nav-link">About</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+ 
+
+ <!-- CREATE SECTION -->
+ <section id="create-section" class="py-5">
+        <div class="container">
+            <div class="row m-4">
+                <div class="col-lg-4">
+                    <div class="row">
+                        <div class="col">
+                            <div class="text-center">
+                                <h4>Michael Gamatero</h4>
+                                
+                                <img src="./assets/img/michael.png" alt="Michael.png" id="mikePic" class="rounded-circle border-secondary d-inline m-4">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="col-3 text-center">
+                            <a href="https://www.linkedin.com/in/michael-gamatero" target="_blank">
+                                <i class="fab fa-linkedin text-light"></i>
+                            </a>
+                        </div>
+
+                        <div class="col-3 text-center"><a href="https://github.com/mgamatero/MusicNoteApp" target="_blank">
+                                <i class="fab fa-github text-light"></i>
+                            </a>
+                        </div>
+
+                        <div class="col-3 text-center"><a href="./assets/MichaelGamateroResumeFinal.docx" target="_blank">
+                                <i class="far fa-file-alt text-light"></i>
+                            </a>
+                        </div>
+                        <div class="col-3 text-center"><a href="mailto:mgamatero@gmail.com" target="_blank">
+                                <i class="far fa-envelope text-light"></i>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="col-lg-8 my-auto">
+                    <h6>
+                        <p>"Currently in a love/hate relationship with my Martin 000M. We started off strong, spending a
+                            few
+                            years together. But due to life, I'd neglect her for months at a time. She gives me the cold
+                            shoulder
+                            whenever I come back to play. She just looks at me, and I at her, trying to remember
+                            our
+                            past efforts, but it takes a while to warm up.</p>
+
+                        <p>With the Music Note App, this should make things easier."</p>
+
+                        <p>Music Note App was joyfully developed using HTML, CSS, Javascript, jQuery, Bootstrap 4, Node.js, Express, APIs, MongoDB, Mongoose, MVC.</p>
+                    </h6>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+      <!-- FOOTER -->
+      <footer id="main-footer" class="bg-dark">
+            <div class="containter">
+                <div class="row">
+                    <div class="col text-center py-4">
+                        <h3>Music Note App</h3>
+                        <p>Copyright mgamatero &copy; <span id="year"></span></p>
+    
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+
+
+
+    <!-- jQuery minified.  From code.jquery.com, not the Bootstrap site!! -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <!-- Popper -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <!-- Bootstrap -getbootstrap.com -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+    <script>
+
+
+
+        // Get the current year for the copyright
+        $('#year').text(new Date().getFullYear())
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>
