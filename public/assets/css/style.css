@@ -98,9 +98,8 @@ body{
   background: url("../img/aboutMartin.jpg");
   background-repeat:no-repeat;
   background-size:cover;
-  background-attachment:fixed;
   min-height: 300px;
-}
+  }
 
 #about-section .dark-overlay{
   
@@ -109,6 +108,7 @@ body{
   width:100%;
   min-height:300px;
   background: rgba(0,0,0,0.7);
+  
 }
 
 .modal-header{
