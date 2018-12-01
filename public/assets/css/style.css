@@ -12,8 +12,7 @@ body{
 #home-section {
   background: url("../img/homemic.jpg");
   background-repeat:no-repeat;
-  background-size:cover;
-  background-attachment:fixed;
+  /* background-size:cover; */
   min-height: 500px;
 } 
 
