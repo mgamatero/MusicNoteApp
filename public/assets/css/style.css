@@ -15,7 +15,7 @@ body{
   background-size:cover;
   background-attachment:fixed;
   min-height: 500px;
-}
+} 
 
 #home-section .dark-overlay{
   position:absolute;
