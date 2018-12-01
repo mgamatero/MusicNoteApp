@@ -26,6 +26,11 @@ body{
   background: rgba(0,0,0,0.7);
 }
 
+#home-section img{
+  width: 100%;
+  height:auto;
+}
+
 #home-section .home-inner {
   padding-top: 90px;
 }
