@@ -1,9 +1,7 @@
 
 var express = require('express')
 var bodyParser = require('body-parser')
-// var lyrics = require('node-lyrics')
 var lyr = require('lyrics-fetcher')
-
 
 
 
@@ -23,8 +21,11 @@ var path = require('path')
 
 app.use(bodyParser.urlencoded({extended:true}))
 app.use(bodyParser.json())
+app.set('view engine', )  //for hbs
 app.use(express.static(path.join(__dirname,'../public')))
 
+const hbs = require('hbs')  //for hbs
+hbs.registerPartials(path.join(__dirname,'../views/partials'))
 
 //Routes
 require('../controller/routes')(app)
