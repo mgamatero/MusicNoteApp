@@ -26,7 +26,7 @@ app.use(express.static(path.join(__dirname,'../public')))
 
 const hbs = require('hbs')  //for hbs
 hbs.registerPartials(path.join(__dirname,'../views/partials'))
-// hbs.registerPartials(express.static(__dirname + '../views/partials'))
+
 
 //Routes
 require('../controller/routes')(app)
