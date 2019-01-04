@@ -1,5 +1,9 @@
 # MusicNoteApp
-App that tracks potential open mic music pieces.  Able to track ideas, progress, notes, links, recording, etc.  Songs stay in "Active" or "Archived" sections.  Song lyrics pulled from lyric-fetcher NPM API
+App that tracks potential open mic music pieces.  Able to track ideas, progress, notes, links, recording, etc.  Songs stay in "Active" or "Archived" sections.  Song lyrics pulled from lyric-fetcher NPM API.
+
+Full Stack App
+- Bootstrap 4.0, jQuery
+- Mongo, Mongoose, Express, Node.js
 
 ## Live Link
 (https://mighty-springs-43827.herokuapp.com/)
